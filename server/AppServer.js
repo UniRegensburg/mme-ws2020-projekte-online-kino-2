@@ -1,7 +1,14 @@
 /* eslint-env node */
-
-const path = require("path"),
+//import * as SocketIO from "socket.io";
+//var io = require('socket.io');
+/*const path = require("path"),
   express = require("express");
+  const http=require("http"); */
+
+
+
+var io;
+
 
 /**
  * AppServer
@@ -21,10 +28,25 @@ class AppServer {
    * @constructor
    * @param  {String} appDir Relative path to application dir (from parent)
    */
-  constructor(appDir) {
+ /* constructor(appDir) {
     this.appDir = path.join(__dirname, "../", appDir); 
     this.app = express();
     this.app.use("/app", express.static(this.appDir));
+  }
+  */
+  constructor(){
+    var express = require('express');
+    this.app = express();
+    this.app.use("/app", express.static(__dirname + '/'));
+    this.server = require('http').createServer(this.app);
+
+  }
+
+  start(port){
+    io = require('socket.io').listen(this.server);
+    this.server.listen(port);
+    console.log('Server Started . . .');
+
   }
 
   /**
@@ -32,13 +54,21 @@ class AppServer {
    * 
    * @param  {Number} port Port to use for serving static files
    */
-  start(port) {
-    this.server = this.app.listen(port, function() {
+  /*start(port) {
+    this.server=http.createServer(this.app);
+   /* this.server = this.app.listen(port, function() {
       console.log(
         `AppServer started. Client available at http://localhost:${port}/app`
       );
     });
+    this.server.listen(port, function() {
+      console.log(
+        `AppServer started. Client available at http://localhost:${port}/app`
+      );
+    });
+    io = new SocketIO.Server(this.server);
   }
+  */
 
   /**
    * Stops running express server
@@ -52,4 +82,6 @@ class AppServer {
 
 }
 
-module.exports = AppServer;
+ module.exports = AppServer;
+
+//export default AppServer; 
