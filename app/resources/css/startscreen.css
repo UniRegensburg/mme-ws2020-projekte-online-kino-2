@@ -1,0 +1,113 @@
+body {
+
+    margin: 0;
+    padding: 0;
+    font-family: Roboto, Arial, sans-serif;
+}
+header {
+    text-align: center;
+    height: 45vh;
+    position: relative;
+    
+}
+.header-img {
+    background-image: url(/app/resources/img/background_img.jpg);
+    background-color: #2f2f2f;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+}
+
+.content {
+    background: #4c7083; 
+    width: 100%;
+    height: 500px;
+    position: relative;
+    
+}
+.logo-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.logo {
+    z-index: 1;
+    max-width: 20%;
+    vertical-align: middle;
+    
+}
+.logo-text {
+    font-size: 5em;
+    font-family: 'Dancing Script', cursive;
+    color: #092a3d;
+    text-shadow: 1px 1px 2px black;
+    vertical-align: middle;
+    margin-left: 2rem;
+    margin:0;
+    padding: 1vw;
+    
+}
+footer {
+    background: #8e8e93;
+    padding: 1rem;
+    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 2px #092a3d;
+    
+}
+h1 {
+    width: 98vw;
+    margin: 0;
+    padding: 1vw;
+    background-color: #333;
+    border-style: solid;
+    border-width: 0 0 0.25vh 0;
+    border-color: #FFF;
+    color: #FAFAFA;
+}
+.button {
+    position: absolute;
+    /*display: block;*/
+    top: 20%;
+    left: 50%;
+    margin-right: -50%;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #8e8e93;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .button:hover {background-color: #092a3d}
+  
+  .button:active {
+    background-color: #092a3d;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+/*body div {
+    padding: 1vw;
+}*/
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+

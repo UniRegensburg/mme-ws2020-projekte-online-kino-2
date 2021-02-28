@@ -1,13 +1,12 @@
 /* eslint-env node */
-//import * as SocketIO from "socket.io";
-//var io = require('socket.io');
-/*const path = require("path"),
-  express = require("express");
-  const http=require("http"); */
+import * as SocketIO from "socket.io";
+import path from "path";
+import express from "express";
+import http from "http"; //const http=require("http"); ist in Node.js implementiert
 
-
-
-var io;
+var io, 
+users = [], 
+connections = [];
 
 
 /**
@@ -18,6 +17,13 @@ var io;
  * @author: Alexander Bazo
  * @version: 1.0
  */
+/*function onClientConnect(socket){
+  console.log("kuku");
+   socket.join("app");
+   console.log("jemand angebunden");
+    connections.push(socket);
+    console.log('Connected: sockets connected '+ connections.length);
+}*/
 
 class AppServer {
 
@@ -28,51 +34,44 @@ class AppServer {
    * @constructor
    * @param  {String} appDir Relative path to application dir (from parent)
    */
- /* constructor(appDir) {
-    this.appDir = path.join(__dirname, "../", appDir); 
+  constructor(appDir) {
     this.app = express();
-    this.app.use("/app", express.static(this.appDir));
-  }
-  */
-  constructor(){
-    var express = require('express');
-    this.app = express();
-    this.app.use("/app", express.static(__dirname + '/'));
-    this.server = require('http').createServer(this.app);
-
+    this.app.use("/app", express.static(appDir));
   }
 
-  start(port){
-    io = require('socket.io').listen(this.server);
-    this.server.listen(port);
-    console.log('Server Started . . .');
-
-  }
 
   /**
    * Starts server on given port
    * 
    * @param  {Number} port Port to use for serving static files
    */
-  /*start(port) {
+  start(port) {
     this.server=http.createServer(this.app);
-   /* this.server = this.app.listen(port, function() {
-      console.log(
-        `AppServer started. Client available at http://localhost:${port}/app`
-      );
-    });
     this.server.listen(port, function() {
       console.log(
         `AppServer started. Client available at http://localhost:${port}/app`
       );
     });
+    console.log("hier sind wir");
+    //io=require('socket.io')(http);
     io = new SocketIO.Server(this.server);
-  }
-  */
+    console.log("io"+io);
+
+    //Problem: Funktion wird nicht aufgerufen 
+    io.on("connection", function (socket){
+      console.log("connections"+connections);
+      socket.join("app");
+      console.log("jemand angebunden");
+      connections.push(socket);
+      console.log('Connected: sockets connected '+ connections.length);
+    });
+    console.log("kuku1");
+    }
+  
 
   /**
    * Stops running express server
-   */
+   */ 
   stop() {
     if (this.server === undefined) {
       return;
@@ -82,6 +81,4 @@ class AppServer {
 
 }
 
- module.exports = AppServer;
-
-//export default AppServer; 
+export default AppServer; 

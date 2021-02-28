@@ -24,7 +24,7 @@
     
             </ul>
         </div>
-    </div>    
+    </div>      
    
     <div class="row">
         <div class ="video-place">
@@ -33,10 +33,10 @@
             class="video-js vjs-default-skin" 
             poster="http://ec2-54-227-116-247.compute-1.amazonaws.com/models/site-templates/images/cover_img/ted_cover.jpg" 
             controls
-            autoplay
+            
             width="640" height="264"
             data-setup='{ "techOrder": ["youtube"], 
-            "sources": [{ "type": "video/youtube", 
+            "sources": [{ "type": "video/youtube", "autoplay":true,
             "src": "https://www.youtube.com/watch?v=TQRkt1oz7gE"}] }'> 
             </video>
         </div>
@@ -58,8 +58,16 @@
 <script src="../node_modules/videojs-youtube/dist/Youtube.min.js"></script>
 <script type="module" src="resources/js/index.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script type="module" src = "../index.js"></script>
-
+--<script type="module" src = "../index.js"></script>
+<!--<script src= "../server/AppServer.js"></script>-->
+<!--Laut Dokumentation-->
+<script>
+    var socket = io();
+    socket.on('connectToRoom',function(data) {
+       document.body.innerHTML = '';
+       document.write(data);
+    });
+ </script>
 
 
 </body>
@@ -73,7 +81,7 @@
 
 <template id="frame">
     <li draggable="true">
-        <img height="" width="" frame="" src="">
+        <img heigh="" width="" frame="" src="">
         <span class="button delete-frame">Entfernen</span>
     </li>
 </template>
