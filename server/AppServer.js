@@ -49,33 +49,28 @@ class AppServer {
     this.server=http.createServer(this.app);
     this.server.listen(port, function() {
       console.log(
-        `AppServer started. Client available at http://localhost:${port}/app`
+        `AppServer started! Client available at http://localhost:${port}/app`
       );
     });
-    console.log("hier sind wir");
     //io=require('socket.io')(http);
     io = new SocketIO.Server(this.server);
-    console.log("io"+io);
+    console.log("io hier"+io);
 
     //Problem: Funktion wird nicht aufgerufen 
-    io.on("connection", function (socket){
-      console.log("connections"+connections);
-      socket.join("app");
-      console.log("jemand angebunden");
+    io.sockets.on("connection", function (socket){
       connections.push(socket);
-      console.log('Connected: sockets connected '+ connections.length);
+      console.log("Anzahl von connections angebunden"+connections);
+      socket.join("app");
+      console.log('Connected: sockets connected'+ connections.length);
     });
-    console.log("kuku1");
     }
-  
-
   /**
    * Stops running express server
    */ 
   stop() {
     if (this.server === undefined) {
       return;
-    }
+    } 
     this.server.close();
   }
 
