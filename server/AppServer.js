@@ -1,10 +1,14 @@
 /* eslint-env node */
-import * as SocketIO from "socket.io";
-import path from "path";
-import express from "express";
-import http from "http"; //const http=require("http"); ist in Node.js implementiert
+//*import * as SocketIO from "socket.io";
+//*import path from "path";
+//*import express from "express";
+//*import http from "http"; //const http=require("http"); ist in Node.js implementiert
+//const path=require("path");
+const express=require("express");
+//var bodyParser = require("body-parser");
+const http = require("http");
 
-var io, 
+var app, io,
 users = [], 
 connections = [];
 
@@ -17,13 +21,7 @@ connections = [];
  * @author: Alexander Bazo
  * @version: 1.0
  */
-/*function onClientConnect(socket){
-  console.log("kuku");
-   socket.join("app");
-   console.log("jemand angebunden");
-    connections.push(socket);
-    console.log('Connected: sockets connected '+ connections.length);
-}*/
+
 
 class AppServer {
 
@@ -35,8 +33,10 @@ class AppServer {
    * @param  {String} appDir Relative path to application dir (from parent)
    */
   constructor(appDir) {
-    this.app = express();
-    this.app.use("/app", express.static(appDir));
+    app = express();
+    app.use("/app", express.static(appDir));
+    //app.use(express.static(path.join("/app", appDir)));
+
   }
 
 
@@ -46,23 +46,32 @@ class AppServer {
    * @param  {Number} port Port to use for serving static files
    */
   start(port) {
-    this.server=http.createServer(this.app);
-    this.server.listen(port, function() {
+
+    this.server=http.createServer(app);
+   /* //*this.server.listen(port, function() {
       console.log(
         `AppServer started! Client available at http://localhost:${port}/app`
       );
-    });
+    });*/
     //io=require('socket.io')(http);
-    io = new SocketIO.Server(this.server);
+    //*io = new SocketIO.Server(this.server);
+   
+    this.server.listen(port, ()=> {
+    console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
+    });
+    //Problem: Funktion wird nicht aufgerufen 
+    io = require("socket.io")(this.server);
     console.log("io hier"+io);
 
-    //Problem: Funktion wird nicht aufgerufen 
-    io.sockets.on("connection", function (socket){
-      connections.push(socket);
-      console.log("Anzahl von connections angebunden"+connections);
-      socket.join("app");
-      console.log('Connected: sockets connected'+ connections.length);
-    });
+    }
+
+    process(){
+      io.sockets.on("connection", function(socket){
+        connections.push(socket);
+        socket.join("app");
+        console.log("Anzahl von connections angebunden"+connections.length +socket.id);
+  
+      });
     }
   /**
    * Stops running express server
@@ -76,4 +85,5 @@ class AppServer {
 
 }
 
-export default AppServer; 
+//*export default AppServer; 
+module.exports=AppServer;

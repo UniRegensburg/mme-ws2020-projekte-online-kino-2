@@ -4,18 +4,18 @@
 //und ausgeloest werden, behandelt
 
 
-var myPlayer = videojs('my-player');
+//var myPlayer = videojs('my-player');
 
 function init() {
-	changeVideoUrl();
+	//changeVideoUrl();
 }
 
-function changeVideoUrl() {
+/*function changeVideoUrl() {
 	document.getElementById("submitButton").addEventListener("click", () => {
 		let newUrl = document.getElementById("urlInput").value;
 		console.log(newUrl);
 		myPlayer.src({ type: "video/youtube", src:newUrl});
 		myPlayer.play();
 	});
-}	
+}	*/
 init();
