@@ -1,16 +1,18 @@
 /* eslint-env node */
 
-//import AppServer from "./server/AppServer.js";
-var AppServer=require("./server/AppServer.js"),
-server;
+import AppServer from "./server/AppServer.js";
+//var AppServer=require("./server/AppServer.js"),
+var appServer;
 /**
  * Starts webserver to serve files from "/app" folder
  */
 function init() {
-    // Access command line parameters from start command (see package.json)
-    server = new AppServer("./app");
-    server.start(8000);
-    server.process();
+    appServer = new AppServer("app");
+    console.log("appServer "+appServer+ typeof appServer);
+    appServer.start(8000);
+   // server.process();
+   console.log("2");
+
 }
 
 init();

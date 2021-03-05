@@ -1,16 +1,17 @@
 /* eslint-env node */
-//*import * as SocketIO from "socket.io";
-//*import path from "path";
-//*import express from "express";
-//*import http from "http"; //const http=require("http"); ist in Node.js implementiert
+import * as SocketIO from "socket.io";
+import Message from "../app/resources/js/Message.js";
+import path from "path";
+import express from "express";
+import http from "http"; //const http=require("http"); ist in Node.js implementiert
 //const path=require("path");
-const express=require("express");
+//const express=require("express");
 //var bodyParser = require("body-parser");
-const http = require("http");
-
-var app, io,
+//const http = require("http");
+//var Message=require("./app/resources/js/Message.js");
+var app, server,io,
 users = [], 
-connections = [];
+connections = [], messages=[];
 
 
 /**
@@ -22,23 +23,28 @@ connections = [];
  * @version: 1.0
  */
 
+/*function onClientConnect(socket) { 
+  console.log("socket is "+socket);
+  //socket.on("message", onClientMessage.bind(socket));
+  socket.on("new message", (data)=> {
+    console.log(data);
+    io.emit("new message", ()=>{
+      var mes = new Message(socket.id, data.data, data.time);
+      messages.push(mes);
+    });
+  });
+}*/
 
 class AppServer {
 
-  /**
-   * Creates full path to given appDir and constructors express application with
-   * static "/app" route to serve files from app directory.
-   * 
-   * @constructor
-   * @param  {String} appDir Relative path to application dir (from parent)
-   */
   constructor(appDir) {
+    console.log("wir sind in constructor AppServer");
     app = express();
-    app.use("/app", express.static(appDir));
+    app.use(express.static(appDir));
     //app.use(express.static(path.join("/app", appDir)));
+    console.log("wir sind am Ende des constructors AppServer");
 
   }
-
 
   /**
    * Starts server on given port
@@ -46,8 +52,8 @@ class AppServer {
    * @param  {Number} port Port to use for serving static files
    */
   start(port) {
-
-    this.server=http.createServer(app);
+    console.log("wir sind in start-Methode von AppServer");
+    server=http.createServer(app);
    /* //*this.server.listen(port, function() {
       console.log(
         `AppServer started! Client available at http://localhost:${port}/app`
@@ -56,23 +62,62 @@ class AppServer {
     //io=require('socket.io')(http);
     //*io = new SocketIO.Server(this.server);
    
-    this.server.listen(port, ()=> {
-    console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
-    });
+    
     //Problem: Funktion wird nicht aufgerufen 
-    io = require("socket.io")(this.server);
+    //io = require("socket.io")(this.server);
+   
+    console.log("Kommen wir hierhin?");
+   /* server.listen(port, ()=> {
+      console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
+     });
+     */
+    server.listen(port);
+    console.log(
+      `AppServer started! Client available at http://localhost:${port}/`
+    );
+    io=new SocketIO.Server(server);
+
     console.log("io hier"+io);
+    io.on("connection", function(socket) { 
+      connections.push(socket);
+      console.log("socket is "+socket.id+connections.length);
+      //socket.on("message", onClientMessage.bind(socket));
+      socket.on("new message", (data)=> {
+        console.log(data);
+        socket.emit("new message", ()=>{
+          var mes = new Message(socket.id, data.data, data.time);
+          messages.push(mes);
+        });
+      });
 
-    }
+    });
+    console.log("wir sind am Ende der start-Methode von AppServer");
 
-    process(){
+  }
+  
+
+   /* process(){
       io.sockets.on("connection", function(socket){
         connections.push(socket);
         socket.join("app");
         console.log("Anzahl von connections angebunden"+connections.length +socket.id);
-  
+        this.chatProcess(socket);
       });
     }
+
+    //HIER CHAT ANPASSEN
+    chatProcess(socket){
+      socket.on("new message", (data)=> {
+        console.log(data);
+        io.sockets.in("app").emit("new message", ()=>{
+          var mes = new Message(socket.id, data.data, data.time);
+          messages.push(mes);
+        });
+      
+      });
+      */
+    
+    
   /**
    * Stops running express server
    */ 
@@ -82,8 +127,7 @@ class AppServer {
     } 
     this.server.close();
   }
-
 }
 
-//*export default AppServer; 
-module.exports=AppServer;
+export default AppServer; 
+//module.exports=AppServer;
