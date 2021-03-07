@@ -2,7 +2,6 @@
 import * as SocketIO from "socket.io";
 import Message from "../app/resources/js/Message.js";
 //import path from "path";
-import debug from "debug";
 import express from "express";
 import http from "http"; //const http=require("http"); ist in Node.js implementiert
 //const path=require("path");
@@ -37,45 +36,20 @@ connections = [], messages=[];
 }*/
 
 class AppServer {
-
   constructor(appDir) {
-    console.log("wir sind in constructor AppServer");
     app = express();
     app.use("/app", express.static(appDir));
-   // app.use(express.static("app/resources/js"));
-    
-   
-    //app.use(express.static(path.join("/app", appDir)));
-    console.log("wir sind am Ende des constructors AppServer");
-
   }
 
-  /**
-   * Starts server on given port
-   * 
-   * @param  {Number} port Port to use for serving static files
-   */
   start(port) {
     console.log("wir sind in start-Methode von AppServer");
     server=http.createServer(app);
-   /* //*this.server.listen(port, function() {
-      console.log(
-        `AppServer started! Client available at http://localhost:${port}/app`
-      );
-    });*/
-    //io=require('socket.io')(http);
-    //*io = new SocketIO.Server(this.server);
-  //io = require("socket.io")(this.server);
-   
     console.log("Kommen wir hierhin?");
-   
-     
     server.listen(port);
     console.log(
       `AppServer started! Client available at http://localhost:${port}/app`
     );
     io=new SocketIO.Server(server);
-
     console.log("io hier"+io);
     io.on("connection", function(socket) { 
       connections.push(socket);
@@ -92,7 +66,7 @@ class AppServer {
       });
 
     });
-    console.log("wir sind am Ende der start-Methode von AppServer");
+  //  console.log("wir sind am Ende der start-Methode von AppServer");
     /*app.listen(port, ()=> {
       console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
      });*/

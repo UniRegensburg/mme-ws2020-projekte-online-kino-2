@@ -9,9 +9,9 @@ var appServer;
 function init() {
     appServer = new AppServer("app");
     console.log("appServer "+appServer);
-    appServer.start(8000);
+    appServer.start(5500);
    // server.process();
-   console.log("okay");
+   //console.log("okay");
 
 }
 

@@ -1,6 +1,6 @@
 //const { default: Observable } = require("../../../utils/Observable.js");
 //const Message = require("./Message.js");
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 import {Observable, Event} from "../../../utils/Observable.js";
 import Message from "./js/Message.js";
 //./Message.js
