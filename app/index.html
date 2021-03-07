@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinema4Us</title>
+  <!-- <script type="text/javascript" src="/socket.io/socket.io.js"></script>--> 
+
     <!--<base href=".">-->
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
@@ -50,7 +52,7 @@
                 <div class="editor">
                     <input type="text" name="username-input" placeholder="Enter your name">
                     <textarea placeholder="Write a message ..." class="message" name="message" cols="80" rows="5"></textarea>
-                    <input type="button-send" value="Send">
+                    <input type="button" value="Send">
                 </div>
             </div>
         </div>        
@@ -67,15 +69,16 @@
 
 <template id="frame">
     <li draggable="true">
-        <img heigh="" width="" frame="" src="">
+        <img height="" width="" frame="" src="">
         <span class="button delete-frame">Entfernen</span>
     </li>
 </template>
+<!--<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script> -->      
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="../app/resources/js/index.js"></script>
 
 <script type = "text/html" src="../node_modules/video.js/dist/video.js"></script>
 <script type = "text/html" src="../node_modules/videojs-youtube/dist/Youtube.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script type="module" src="/app/resources/js/index.js"></script>
 
-</html>
+</html> 

@@ -8,10 +8,10 @@ var appServer;
  */
 function init() {
     appServer = new AppServer("app");
-    console.log("appServer "+appServer+ typeof appServer);
+    console.log("appServer "+appServer);
     appServer.start(8000);
    // server.process();
-   console.log("2");
+   console.log("okay");
 
 }
 

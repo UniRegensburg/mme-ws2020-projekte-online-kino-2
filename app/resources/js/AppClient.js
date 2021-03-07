@@ -1,8 +1,9 @@
 //const { default: Observable } = require("../../../utils/Observable.js");
 //const Message = require("./Message.js");
-
+import { io } from "socket.io-client";
 import {Observable, Event} from "../../../utils/Observable.js";
-import Message from "../js/Message.js";
+import Message from "./js/Message.js";
+//./Message.js
 
 function onMessage(message){
     console.log("message allgemein "+message);
@@ -15,7 +16,7 @@ class AppClient extends Observable {
     }
 
     connect(){
-        this.ws=io();
+        this.ws=io("http://localhost:8000/app");
         this.ws.on("new message", onMessage.bind(this));
     }
 
@@ -24,5 +25,5 @@ class AppClient extends Observable {
     }
 }
 
-export default new AppClient();
+export default AppClient;
 //module.exports=new AppClient();

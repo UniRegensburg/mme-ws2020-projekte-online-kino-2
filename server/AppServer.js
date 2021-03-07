@@ -1,7 +1,8 @@
 /* eslint-env node */
 import * as SocketIO from "socket.io";
 import Message from "../app/resources/js/Message.js";
-import path from "path";
+//import path from "path";
+import debug from "debug";
 import express from "express";
 import http from "http"; //const http=require("http"); ist in Node.js implementiert
 //const path=require("path");
@@ -10,7 +11,7 @@ import http from "http"; //const http=require("http"); ist in Node.js implementi
 //const http = require("http");
 //var Message=require("./app/resources/js/Message.js");
 var app, server,io,
-users = [], 
+//users = [], 
 connections = [], messages=[];
 
 
@@ -40,7 +41,10 @@ class AppServer {
   constructor(appDir) {
     console.log("wir sind in constructor AppServer");
     app = express();
-    app.use(express.static(appDir));
+    app.use("/app", express.static(appDir));
+   // app.use(express.static("app/resources/js"));
+    
+   
     //app.use(express.static(path.join("/app", appDir)));
     console.log("wir sind am Ende des constructors AppServer");
 
@@ -61,19 +65,14 @@ class AppServer {
     });*/
     //io=require('socket.io')(http);
     //*io = new SocketIO.Server(this.server);
-   
-    
-    //Problem: Funktion wird nicht aufgerufen 
-    //io = require("socket.io")(this.server);
+  //io = require("socket.io")(this.server);
    
     console.log("Kommen wir hierhin?");
-   /* server.listen(port, ()=> {
-      console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
-     });
-     */
+   
+     
     server.listen(port);
     console.log(
-      `AppServer started! Client available at http://localhost:${port}/`
+      `AppServer started! Client available at http://localhost:${port}/app`
     );
     io=new SocketIO.Server(server);
 
@@ -84,15 +83,19 @@ class AppServer {
       //socket.on("message", onClientMessage.bind(socket));
       socket.on("new message", (data)=> {
         console.log(data);
-        socket.emit("new message", ()=>{
-          var mes = new Message(socket.id, data.data, data.time);
+        //server io schickt an alle angebundenen
+        //Sockets event "new message"
+        io.sockets.emit("new message", ()=>{
+          var mes = new Message(data.from, data.data, data.time);
           messages.push(mes);
         });
       });
 
     });
     console.log("wir sind am Ende der start-Methode von AppServer");
-
+    /*app.listen(port, ()=> {
+      console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
+     });*/
   }
   
 
