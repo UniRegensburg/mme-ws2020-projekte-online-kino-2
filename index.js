@@ -7,11 +7,11 @@ var appServer;
  * Starts webserver to serve files from "/app" folder
  */
 function init() {
-    appServer = new AppServer("app");
-    console.log("appServer "+appServer);
+    appServer = new AppServer("app", "libs");
+    console.log("appServer " + appServer);
     appServer.start(5500);
-   // server.process();
-   //console.log("okay");
+    // server.process();
+    //console.log("okay");
 
 }
 

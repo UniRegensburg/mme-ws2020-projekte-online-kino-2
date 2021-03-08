@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv=”content-type” content=”text/html; charset=utf-8″>
     <title>Cinema4Us</title>
-  <!-- <script type="text/javascript" src="/socket.io/socket.io.js"></script>--> 
-
-    <!--<base href=".">-->
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <!-- Client-CSS für Video.js laden -->
+    <link type="text/css" rel="stylesheet" href="/libs/video-js/video-js.css">
     <link type="text/css" rel="stylesheet" href="resources/css/style.css">
-    
+
 </head>
 
-<body> 
-    <header><h1>Multimedia Engineering Screen </h1></header>
+<body>
+    <header>
+        <h1>Multimedia Engineering Screen </h1>
+    </header>
     <main>
-    <div class="navigation-row">
-        <div class="room-delete"><span class="button delete">Raum löschen</span></div>
-        <div class="url-entering">
-            <input type="url" id = "urlInput" placeholder="Enter YouTube-URL here" maxlength="60">
-            <input type="submit" id = "submitButton" value="Bestätigen">
-        </div> 
-        <div class="frames-box">
-            <ul class="frames">
-    
-            </ul>
+        <div class="navigation-row">
+            <div class="room-delete"><span class="button delete">Raum löschen</span></div>
+            <div class="url-entering">
+                <input type="url" id="urlInput" placeholder="Enter YouTube-URL here" maxlength="60">
+                <input type="submit" id="submitButton" value="Bestätigen">
+            </div>
+            <div class="frames-box">
+                <ul class="frames">
+
+                </ul>
+            </div>
         </div>
-    </div>      
-   
-    <div class="row">
-        <div class ="video-place">
-            <iframe
-            id="my-player" 
-            width="640" height="500"
-            src = "https://www.youtube.com/embed/cBkWhkAZ9ds"> 
+
+        <div class="row">
+            <div class="video-place">
+                <iframe id="my-player" width="640" height="500" src="https://www.youtube.com/embed/cBkWhkAZ9ds"> 
         </iframe>
-        </div>
-        <div class="chat-place">    
-            <div class="chat tab">
-                <span>Chat</span>
-                <div class="board">
-                </div>
-                <div class="editor">
-                    <input type="text" name="username-input" placeholder="Enter your name">
-                    <textarea placeholder="Write a message ..." class="message" name="message" cols="80" rows="5"></textarea>
-                    <input type="button" value="Send">
+            </div>
+            <div class="chat-place">
+                <div class="chat tab">
+                    <span>Chat</span>
+                    <div class="board">
+                    </div>
+                    <div class="editor">
+                        <input type="text" name="username-input" placeholder="Enter your name">
+                        <textarea placeholder="Write a message ..." class="message" name="message" cols="80" rows="5"></textarea>
+                        <input type="button" value="Send">
+                    </div>
                 </div>
             </div>
-        </div>        
-    </div>
+        </div>
     </main>
 
-<template id="message-template">
+    <template id="message-template">
     <span class="message">
         <span class="user-name">{{socketId}}</span>
         <span class="text">{{text}}</span>
@@ -61,17 +60,18 @@
     </span>
 </template>
 
-<template id="frame">
+    <template id="frame">
     <li draggable="true">
         <img height="" width="" frame="" src="">
         <span class="button delete-frame">Entfernen</span>
     </li>
 </template>
-<script type = "module" src="../../node_modules/get-video-id/dist/get-video-id.esm.min.js"></script>
-<!--<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script> -->
+    <!-- Client-Code für get-video-id laden -->
+    <script type="application/javascript" src="/libs/get-video-id/get-video-id.js"></script>
+    <!-- Client-Code für Video.js laden -->
+    <script type="application/javascript" src="/libs/video-js/video.js"></script>
 </body>
-<!--<script type = "text/javascript" src="/socket.io/socket.io.js"></script>-->
 
 <script type="module" src="../app/resources/js/index.js"></script>
 
-</html> 
+</html>

@@ -1,2 +1,5 @@
 # Verhindert das Versionieren lokal installierter Abhängigkeiten
 node_modules
+
+# Verzeichnis für das Bereitstellen der dynamisch heruntergeladenen Client-Libraries (via npm)
+libs/
