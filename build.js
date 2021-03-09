@@ -36,6 +36,17 @@ function publishClientLibraries() {
     fs.copyFileSync("node_modules/video.js/dist/video-js.min.css", "libs/video-js/video-js.min.css");
     fs.copyFileSync("node_modules/video.js/dist/video.js", "libs/video-js/video.js");
     fs.copyFileSync("node_modules/video.js/dist/video.min.js", "libs/video-js/video.min.js");
+    fs.mkdirSync("libs/videojs-youtube/", { recursive: true });
+    fs.copyFileSync("node_modules/videojs-youtube/dist/Youtube.js", "libs/videojs-youtube/Youtube.js");
+    fs.copyFileSync("node_modules/videojs-youtube/dist/Youtube.min.js", "libs/videojs-youtube/Youtube.min.js");
+
+    console.log("Copying socket.io library");
+    fs.mkdirSync("libs/socketio/", { recursive: true });
+    fs.copyFileSync("node_modules/socket.io/client-dist/socket.io.js", "libs/socketio/socket.io.js");
+    fs.copyFileSync("node_modules/socket.io/client-dist/socket.io.min.js", "libs/socketio/socket.io.min.js");
+    fs.copyFileSync("node_modules/socket.io/dist/index.js", "libs/socketio/index.js");
+    fs.copyFileSync("node_modules/socket.io/dist/socket.js", "libs/socketio/socket.js");
+    fs.copyFileSync("node_modules/socket.io/dist/client.js", "libs/socketio/client.js");
 }
 
 build();

@@ -3,7 +3,11 @@ import * as SocketIO from "socket.io";
 import Message from "../app/resources/js/Message.js";
 //import path from "path";
 import express from "express";
-import http from "http"; //const http=require("http"); ist in Node.js implementiert
+//import {createServer} from "http"; //const http=require("http"); ist in Node.js implementiert
+//import {Server} from "socket.io";
+import http from "http";
+
+
 //const path=require("path");
 //const express=require("express");
 //var bodyParser = require("body-parser");
@@ -37,15 +41,19 @@ var app, server, io,
 }*/
 
 class AppServer {
-    constructor(appDir, libDir) {
+  
+    constructor(appDir, libDir, utilsDir) {
         app = express();
         // Static serving client code
         app.use("/app", express.static(appDir));
+        
         // Static serving client libraries
         app.use("/libs", express.static(libDir));
+        app.use("/utils", express.static(utilsDir));
     }
 
     start(port) {
+
         console.log("wir sind in start-Methode von AppServer");
         server = http.createServer(app);
         console.log("Kommen wir hierhin?");
@@ -55,11 +63,13 @@ class AppServer {
         );
         io = new SocketIO.Server(server);
         console.log("io hier" + io);
-        io.on("connection", function(socket) {
+
+        io.sockets.on("connection", function(socket) {
             connections.push(socket);
             console.log("socket is " + socket.id + connections.length);
+            socket.join("room-app");
             //socket.on("message", onClientMessage.bind(socket));
-            socket.on("new message", (data) => {
+           /* socket.on("new message", (data) => {
                 console.log(data);
                 //server io schickt an alle angebundenen
                 //Sockets event "new message"
@@ -68,7 +78,7 @@ class AppServer {
                     messages.push(mes);
                 });
             });
-
+*/
         });
         //  console.log("wir sind am Ende der start-Methode von AppServer");
         /*app.listen(port, ()=> {
@@ -103,12 +113,11 @@ class AppServer {
      * Stops running express server
      */
     stop() {
-        if (this.server === undefined) {
+        if (server === undefined) {
             return;
         }
-        this.server.close();
+        server.close();
     }
 }
 
 export default AppServer;
-//module.exports=AppServer;
