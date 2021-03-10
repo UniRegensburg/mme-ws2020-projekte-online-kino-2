@@ -1,9 +1,28 @@
-
+html {
+    font-family: 'Work Sans', sans-serif;
+    background-image: url(/app/resources/img/background_img.jpg);
+    background-size: cover;
+	background-position: top center;
+	position: relative;
+	z-index: 1;
+    
+}
+html::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: black;
+	opacity: .7;
+	z-index: -1;
+}
 :root {
     box-sizing: border-box;
-    font-size: 22px;
-    font-family: 'Reggae One', cursive;
-    background-color: #c5dec1;
+    font-size: 20px;
+    font-family: 'Work Sans', sans-serif;
+    
 }
 
 *, ::before, ::after {
@@ -14,39 +33,75 @@ body div {
     padding: 1vw;
 }
 
-h1 {
-    width: 98vw;
-    margin: 0;
-    padding: 1vw;
-    background-color: #333;
-    border-style: solid;
-    border-width: 0 0 0.25vh 0;
-    border-color: #FFF;
-    color: #FAFAFA;
+#urlInput {
+    display: inline-block;
+	padding: 10px 10px;
+    width: 200px;
+    margin-right: 5%;
+	color: white;
+	background-color: #0e3545;
+	border: 2px solid #d0dcde;
+	font-size: 0.5rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	margin-top: 10px;
+	transition: .3s ease;
+	transition-property: background-color, color;
+
 }
+#submitButton{
+    display: inline-block;
+	padding: 10px 10px;
+    padding-left: 5%;
+	color: white;
+	background-color: transparent;
+	border: 2px solid #d0dcde;
+	font-size: 0.8rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	margin-top: 10px;
+	transition: .3s ease;
+	transition-property: background-color, color;
+
+}
+#submitButton:hover {
+	color: #d0dcde;
+	background-color: #7492a4;
+}
+
 
 .row {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0.5em;
+    /* justify-content: space-between; */
+    /* flex-wrap: wrap; */
+    /* padding: 0.5em  */
+    
 }
 
 .video-place{
-    flex: 75%;
+    flex: 65%;
+    /* width: 75%; */
 }
 
 .chat-place {
-    flex: 25%;
+    flex: 45%;
+    width: 25%;
+    color: #d0dcde;
+    font-size: 1rem;
+    border-radius: 2%;
+    border: 1px solid #d0dcde;
 }
 
 #my-player{
-    padding: 1em;
-    width: 75%;
-   /* flex-basis: 50%; */
+    padding: 0.5em;
+    /* width: 75%; */
+    flex-basis: 50%; 
+    /* border-radius: 1%;
+    border: 0.5px solid transparent; */
 }
 
 .navigation-row {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,7 +124,7 @@ h1 {
 
 body {
     margin: 0;
-    background: #FAFAFA;
+    
     color: #000;
 }
 
@@ -84,11 +139,13 @@ body {
 }
 
 .frames-box {
-    background-color: steelblue;
-    height: 170px;
+    background-color: #d0dcde;
+    border: 2px solid white;
+    
+    height: 150px;
     overflow: auto; /*ob Scrollbalken mitdabei ist*/
     white-space: nowrap;
-    scrollbar-color: rgb(136, 136, 136) rgb(241, 241, 241);
+    scrollbar-color: #7492a4;
     scrollbar-width: thin;
 }
 
@@ -108,22 +165,24 @@ body {
 .frames-box .frames li {
     position: relative;
     display: inline-block;
-    width: 240px;
+    width: 200px;
     height: 150px;
+    margin-left: 0.5%;
+    background-color: black;
     white-space: normal;
 }
 
 .frames-box .frames li.highlight {
-    border-color: rgb(139, 0, 0);
+    border-color: #7492a4;
     opacity: 0.5;
 }
 
 .frames-box .frames li img {
-    width: 240px;
+    width: 200px;
     height: 150px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(139, 0, 0);
+    border-color: #7492a4;
 }
 
 .frames-box .frames li .button.delete-frame {
@@ -136,10 +195,10 @@ body {
     line-height: 20px;
     text-align: center;
     font-size: 0.6em;
-    background-color: rgb(139, 0, 0);
+    background-color: #0e3545;
     border-style: solid;
     border-width: 1px;
-    border-color: rgb(139, 0, 0);
+    border-color: white;
     border-radius: 7px 0px 0px 0px;
     color: rgb(250, 250, 250);
     z-index: 999;
@@ -181,66 +240,85 @@ body {
     padding-bottom: 1vh;
 }
 
-.board .message .text {}
+
 
 .editor {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     margin: 0;
-    padding: 2vh 20vw;
-    background-color: var(--viridian);
+    padding: 2;
+    background-color: transparent;
 }
 
 .editor input[type="text"] {
     border: none;
-    overflow: auto;
+    /* overflow: auto; */
+    /* padding: 2;
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none;
+    box-shadow: none; */
     background-color: var(--viridian);
-    font-family: "Yusei Magic", sans-serif;
-    color: var(--font-light);
+    font-family: 'Work Sans', sans-serif;
+    color: white;
     font-size: 1em;
 }
 
 .editor .message {
     border: none;
-    overflow: auto;
+    /* overflow: auto; */
+    /* padding: 2;
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    resize: none;
+    resize: none; */
     background-color: var(--viridian);
-    font-family: "Yusei Magic", sans-serif;
-    color: var(--font-light);
+    font-family: 'Work Sans', sans-serif;
+    color: white;
     font-size: 1em;
 }
 
 .editor input[type="button"] {
-    align-self: flex-end;
-    overflow: auto;
-    outline: none;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--mauve);
-    border-radius: 4px;
-    background-color: var(--mauve);
-    font-family: "Yusei Magic", sans-serif;
-    font-size: 1em;
-    line-height: 2em;
-    color: var(--font-light);
+    /* align-self: flex; */
+    /* overflow: auto; */
+    
+    display: inline-block;
+	padding: 10px 10px;
+	color: white;
+	background-color: #7492a4;
+	border: 2px solid #d0dcde;
+    border-radius: 7%;
+	font-size: 1rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	margin-top: 10px;
+	transition: .3s ease;
+	transition-property: background-color, color;
 }
 
 .editor input[type="button"]:hover {
-    cursor: pointer;
+    color: #d0dcde;
+	background-color: #0e3545;
+}
+
+@media(max-width: 900px){
+    #my-player{
+        flex: 100%;
+        width: 450px;
+        height: 300px;
+    }
+
+    .chat-place {
+        font-size:x-small;
+    }
 }
 
 
-@media(max-width: 600px){
+@media(max-width: 650px){
     :root {
-        font-size: 0.875em;
+        /* font-size: 0.875em; */
+        font-size: x-small;
     }
 
     .row{
@@ -248,19 +326,20 @@ body {
     }
 
     .video-place{
-        flex: 100%;
+        flex: 75%;
         font-size: inherit;
     }
     
     .chat-place {
         flex: 100%;
-        font-size: inherit;
+        /* width: 100%; */
     }
 
-    #my-player{
-        width: 200px;
-        height: 120px;
-    }
+    /* #my-player{
+        flex: 100%;
+        width: 250px;
+        height: 180px;
+    } */
 
     .url-entering{
         flex: 70%;
@@ -274,5 +353,44 @@ body {
         flex: 100%;
         padding: 0.5em;
     }
+    .row{
+        display: table;
+    }
+
 }
+
+@media(max-width: 500px){
+    #my-player{
+        flex: 100%;
+        width: 250px;
+        height: 180px;
+    } 
+}
+
+
+    #logo{
+        border-radius: 50%;
+    }
+
+
+    .controls input[type="button"] {
+        display: inline-block;
+        padding: 10px 15px;
+        color: white;
+        background-color: transparent;
+        border: 2px solid #d0dcde;
+        border-radius: 7%;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+        margin-top: 10px;
+        margin-left: 2%;
+        transition: .3s ease;
+        transition-property: background-color, color;
+
+    }
+    .controls input:hover {
+        color: #d0dcde;
+        background-color: #7492a4;
+    }
 

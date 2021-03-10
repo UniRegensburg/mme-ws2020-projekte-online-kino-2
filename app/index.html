@@ -18,18 +18,23 @@
 
 <body>
     <header>
-        <h1>Multimedia Engineering Screen </h1>
+        <div class ="row">
+        <img id = "logo" src = .\resources\img\logo-img.jpeg height="100px"> </img>
+        </div>    
     </header>
     <main>
         <div class="navigation-row">
-            <div class="room-delete"><span class="button delete">Raum löschen</span></div>
             <div class="url-entering">
                 <input type="url" id="urlInput" placeholder="Enter YouTube-URL here" maxlength="60">
                 <input type="submit" id="submitButton" value="Bestätigen">
             </div>
             <div class="frames-box">
                 <ul class="frames">
-
+                <li>Frame1</li>
+                <li>Frame2</li>
+                <li>Frame3</li>
+                <li>Frame4</li>
+                <li>Frame5</li>
                 </ul>
             </div>
         </div>
@@ -40,20 +45,36 @@
                 id="my-player"
                 class="video-js vjs-default-skin"
                 controls
-                width="640" height="500"
+                width="640" height="360"
                 data-setup='{ "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=2V1fYJntoFA"}] }'>
                 </video>
+                <div class = "controls">
+                    <input type="button" value="Play / Pause">
+                    <input type="button" value="Sync">
+                    <input type="button" value="Previous">
+                    <input type="button" value="Next">
+                </div>
             </div>
             <div class="chat-place">
-                <div class="chat tab">
+                <!-- <div class="chat tab"> -->
                     <span>Chat</span>
-                    <div class="board">
-                    </div>
+                    <!-- <div class="board"> -->
+                        <div class="container">
+                            <p>Hello. How are you today?</p>
+                            <span class="time-right">11:00</span>
+                          </div>
+                          
+                          <div class="container darker">
+                            <p>Hey! I'm fine. Thanks for asking!</p>
+                            <span class="time-left">11:01</span>
+                          </div>
+                    
                     <div class="editor">
                         <input type="text" name="username-input" placeholder="Enter your name">
                         <textarea placeholder="Write a message ..." class="message" name="message" cols="80" rows="5"></textarea>
                         <input type="button" value="Send">
                     </div>
+                </div>
                 </div>
             </div>
         </div>
