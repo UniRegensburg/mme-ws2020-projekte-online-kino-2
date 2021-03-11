@@ -71,6 +71,7 @@ class AppServer {
             connections.push(socket);
             console.log("socket is " + socket.id + connections.length);
             socket.join("app");
+            //CHAT
             socket.on("send message", (data)=> { //Server erwartet von irgendwelchem Client das event "send message"
               console.log("data socket on is "+data + data.userName +data.message);
               // Server schickt unter dem event "new message" an alle anderern Clients das frueher empfangene event 
@@ -83,11 +84,24 @@ class AppServer {
                 messages.push(mes);
                 console.log("mesagges length is "+messages.length);
 
-              });
+            });
             socket.on("disconnect", ()=>{
               connections.splice(connections.indexOf(socket), 1);
               console.log(socket.id +" disconnected from server");
-            });     
+            }); 
+            
+            //VIDEO STEUERUNG
+            //Hier starten wir den Player, egal um welche Zeit
+            socket.on("starting player", (receivedVideoTime)=>{
+              console.log("starting play event gefangen"+receivedVideoTime);
+              io.sockets.in("app").emit("just play", {videoTime: receivedVideoTime});
+              console.log("okay, videoEl abgesendet");
+            });
+
+            //Hier pausieren wir den Player, egal um welche Zeit
+            socket.on("stopping player", (receivedVideoTime)=>{
+              io.sockets.in("app").emit("just stop", {videoTime: receivedVideoTime});
+            });
         });
     }
     /**   

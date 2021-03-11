@@ -3,21 +3,24 @@
 //der Seite des Clients wahrgenommen werden
 //und ausgeloest werden, behandelt
 import MessageChatField from "./user_interface/MessageChatField.js";
+import VideoControl from "./user_interface/VideoControl.js";
+import AppClient from "../js/AppClient.js";
 
 // eslint-disable-next-line no-undef
-var myPlayer = videojs('my-player'), messageChatField;
+var messageChatField,
+videoControl, appClient;
 
 function init() {
-    changeVideoUrl();
-    messageChatField=new MessageChatField();
-    console.log("messageChatField is "+messageChatField);
-    console.log(document.getElementById("submitButton"));
+   // changeVideoUrl();
+    appClient=new AppClient();
+    messageChatField=new MessageChatField(appClient);
+    videoControl=new VideoControl(appClient);
   }
 
 //youtube links zum Probieren 
 //https://www.youtube.com/watch?v=d27gTrPPAyk
 //https://www.youtube.com/watch?v=C3lWwBslWqg
-function changeVideoUrl() {
+/*function changeVideoUrl() {
   console.log("in changeVideoURL Methode drin ");
   document.getElementById("submitButton").addEventListener("click", () => {
     let newUrl = document.getElementById("urlInput").value;
@@ -25,6 +28,6 @@ function changeVideoUrl() {
     myPlayer.src({ type: "video/youtube", src:newUrl});
     myPlayer.play();
 });
-}
+}*/
 
 init();

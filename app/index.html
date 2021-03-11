@@ -43,16 +43,17 @@
             <div class="video-place">
                 <video
                 id="my-player"
+                
                 class="video-js vjs-default-skin"
-                controls
                 width="640" height="360"
                 data-setup='{ "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "https://www.youtube.com/watch?v=2V1fYJntoFA"}] }'>
                 </video>
                 <div class = "controls">
-                    <input type="button" value="Play / Pause">
-                    <input type="button" value="Sync">
-                    <input type="button" value="Previous">
-                    <input type="button" value="Next">
+                    <input class = "playButton" type="button" value="Play">
+                    <input class = "pauseButton" type="button" value="Pause">
+                    <input class = "syncButton" type="button" value="Sync">
+                    <input class = "previousButton" type="button" value="Previous">
+                    <input class = "nextButton" type="button" value="Next">
                 </div>
             </div>
             <div class="chat-place">
