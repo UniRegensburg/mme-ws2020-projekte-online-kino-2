@@ -1,9 +1,8 @@
-//const { default: Observable } = require("../../../utils/Observable.js");
-//const Message = require("./Message.js");
-import { Observable} from "../../../utils/Observable.js";
-//import Message from "./js/Message.js";
-//./Message.js
+
+import { Observable, Event} from "../../../utils/Observable.js";
+
 var ws;
+
 /*function onMessage(message) {
     console.log("message allgemein " + message);
     this.notifyAll(new Event("new message", message));
@@ -12,19 +11,21 @@ var ws;
 class AppClient extends Observable {
     constructor() {
         super();
+        // eslint-disable-next-line no-undef
+        ws = io.connect();
     }
 
     connect() {
-        // eslint-disable-next-line no-undef
-        ws = io.connect();
-        console.log("ws "+ws);
-       // this.ws.on("new message", onMessage.bind(this));
+        ws.on("new message", (data)=>{
+            console.log("message allgemein: " + data);
+            this.notifyAll(new Event("new message", data));
+        });
     }
 
-    /*send(userName, message) {
-        //this.ws.emit("new message", new Message(userName, message, Date.now()));
-    }*/
+    static send(userName, message) {
+        console.log("userName is "+userName+" message is "+message);
+        ws.emit("send message", {userName: userName, message: message});
+    }
 }
 
 export default AppClient;
-//module.exports=new AppClient();

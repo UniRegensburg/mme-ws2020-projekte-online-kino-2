@@ -58,8 +58,8 @@
             <div class="chat-place">
                 <!-- <div class="chat tab"> -->
                     <span>Chat</span>
-                    <!-- <div class="board"> -->
-                        <div class="container">
+                     <div class="board"> 
+                        <!--<div class="container">
                             <p>Hello. How are you today?</p>
                             <span class="time-right">11:00</span>
                           </div>
@@ -67,7 +67,7 @@
                           <div class="container darker">
                             <p>Hey! I'm fine. Thanks for asking!</p>
                             <span class="time-left">11:01</span>
-                          </div>
+                          </div>-->
                     
                     <div class="editor">
                         <input type="text" name="username-input" placeholder="Enter your name">
@@ -86,24 +86,21 @@
         <span class="text">{{text}}</span>
         <span class="timestamp">{{timestamp}}</span>
     </span>
-</template>
+    </template>
 
     <template id="frame">
     <li draggable="true">
         <img height="" width="" frame="" src="">
         <span class="button delete-frame">Entfernen</span>
     </li>
-</template>
-    <!-- Client-Code für Video.js laden -->
+    </template>
+    <!-- Client-Code für socket io laden -->
     <script src="/socket.io/socket.io.js"></script>
+    <!-- Client-Code für Video.js and YouTube laden -->
     <script type = "application/javascript" src="/libs/video-js/video.min.js"></script>
-    <script c src="/libs/videojs-youtube/Youtube.min.js"></script>
-    <script type = "module" src="../app/resources/js/index.js"></script>
-  <!--<script type= "application/javascript" src= "/libs/socketio/socket.io.js"></script>
-   
-    <script> const socket = io();
-    </script>-->  
+    <script src="/libs/videojs-youtube/Youtube.min.js"></script>
+    <!-- Client-Code in client-setiger index.js -->
+    <script type = "module" src="../app/resources/js/index.js"></script> 
     <script type= "application/javascript" src= "/libs/socketio/socket.io.min.js"></script>
-   <!--<script type="application/javascript" src="/libs/socketio/client.js"></script>--> 
 </body>
 </html>

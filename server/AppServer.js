@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+/* eslint-disable one-var */
+/* eslint-disable vars-on-top */
 /* eslint-env node */
 import * as SocketIO from "socket.io";
 import Message from "../app/resources/js/Message.js";
@@ -64,60 +67,39 @@ class AppServer {
         io = new SocketIO.Server(server);
         console.log("io hier" + io);
 
-        io.sockets.on("connection", function(socket) {
+        io.sockets.on("connection", function(socket) { //der erstellte Server registriert angebundene Sockets
             connections.push(socket);
             console.log("socket is " + socket.id + connections.length);
-            socket.join("room-app");
-            //socket.on("message", onClientMessage.bind(socket));
-           /* socket.on("new message", (data) => {
-                console.log(data);
-                //server io schickt an alle angebundenen
-                //Sockets event "new message"
-                io.sockets.emit("new message", () => {
-                    var mes = new Message(data.from, data.data, data.time);
-                    messages.push(mes);
-                });
-            });
-*/
+            socket.join("app");
+            socket.on("send message", (data)=> { //Server erwartet von irgendwelchem Client das event "send message"
+              console.log("data socket on is "+data + data.userName +data.message);
+              // Server schickt unter dem event "new message" an alle anderern Clients das frueher empfangene event 
+              io.sockets.in("app").emit("new message", { 
+                  userName: data.userName, 
+                  timeStamp: Date.now(),
+                  message: data.message});
+                console.log("mes is "+mes);
+                var mes=new Message(data.userName, data.message, Date.now());
+                messages.push(mes);
+                console.log("mesagges length is "+messages.length);
+
+              });
+            socket.on("disconnect", ()=>{
+              connections.splice(connections.indexOf(socket), 1);
+              console.log(socket.id +" disconnected from server");
+            });     
         });
-        //  console.log("wir sind am Ende der start-Methode von AppServer");
-        /*app.listen(port, ()=> {
-          console.log(`AppServer started!!! Client available at http://localhost:${port}/app`);
-         });*/
     }
-
-
-    /* process(){
-       io.sockets.on("connection", function(socket){
-         connections.push(socket);
-         socket.join("app");
-         console.log("Anzahl von connections angebunden"+connections.length +socket.id);
-         this.chatProcess(socket);
-       });
-     }
-
-     //HIER CHAT ANPASSEN
-     chatProcess(socket){
-       socket.on("new message", (data)=> {
-         console.log(data);
-         io.sockets.in("app").emit("new message", ()=>{
-           var mes = new Message(socket.id, data.data, data.time);
-           messages.push(mes);
-         });
-       
-       });
-       */
-
-
-    /**
-     * Stops running express server
+    /**   
+     * Stops running express server 
      */
-    stop() {
+        stop() {
         if (server === undefined) {
             return;
-        }
-        server.close();
     }
-}
+        server.close();
+        console.log("server closed");
+    }
+  }
 
 export default AppServer;
