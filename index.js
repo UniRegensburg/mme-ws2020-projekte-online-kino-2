@@ -8,12 +8,15 @@ var appServer;
  */
 function init() {
     appServer = new AppServer("app", "libs", "utils");
+   // appServer.addEventListener("new socket registered", synchronizeVideoData.bind(appServer));
     console.log("appServer " + appServer);
     console.log("Hallo, hier bin ich");
     appServer.start(5500);
-    // server.process();
-    //console.log("okay");
 
 }
+
+/*function synchronizeVideoData (){
+   
+}*/
 
 init();

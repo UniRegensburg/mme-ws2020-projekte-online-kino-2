@@ -1,25 +1,17 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-console */
 /* eslint-disable one-var */
 /* eslint-disable vars-on-top */
 /* eslint-env node */
 import * as SocketIO from "socket.io";
-import Message from "../app/resources/js/Message.js";
-//import path from "path";
 import express from "express";
-//import {createServer} from "http"; //const http=require("http"); ist in Node.js implementiert
-//import {Server} from "socket.io";
 import http from "http";
+import {Observable, Event} from "../utils/Observable.js";
 
-
-//const path=require("path");
-//const express=require("express");
-//var bodyParser = require("body-parser");
-//const http = require("http");
-//var Message=require("./app/resources/js/Message.js");
 var app, server, io,
     //users = [], 
     connections = [],
-    messages = [];
+    messages = [], given_room="";
 
 
 /**
@@ -31,32 +23,24 @@ var app, server, io,
  * @version: 1.0
  */
 
-/*function onClientConnect(socket) { 
-  console.log("socket is "+socket);
-  //socket.on("message", onClientMessage.bind(socket));
-  socket.on("new message", (data)=> {
-    console.log(data);
-    io.emit("new message", ()=>{
-      var mes = new Message(socket.id, data.data, data.time);
-      messages.push(mes);
-    });
-  });
-}*/
-
 class AppServer {
   
     constructor(appDir, libDir, utilsDir) {
         app = express();
         // Static serving client code
         app.use("/app", express.static(appDir));
-        
         // Static serving client libraries
         app.use("/libs", express.static(libDir));
         app.use("/utils", express.static(utilsDir));
+        
     }
 
     start(port) {
-
+       /* app.get("/:room", function(req, res) {
+          given_room = req.params.room;
+          console.log("given_room "+given_room);
+          res.sendFile(__dirname + "/index.html");
+        });*/
         console.log("wir sind in start-Methode von AppServer");
         server = http.createServer(app);
         console.log("Kommen wir hierhin?");
@@ -71,6 +55,8 @@ class AppServer {
             connections.push(socket);
             console.log("socket is " + socket.id + connections.length);
             socket.join("app");
+          //  var eventNewSocket=new Event("new socket registered");
+          //  this.notifyAll(eventNewSocket);
             //CHAT
             socket.on("send message", (data)=> { //Server erwartet von irgendwelchem Client das event "send message"
               console.log("data socket on is "+data + data.userName +data.message);
@@ -78,16 +64,12 @@ class AppServer {
               io.sockets.in("app").emit("new message", { 
                   userName: data.userName, 
                   timeStamp: Date.now(),
-                  message: data.message});
-                console.log("mes is "+mes);
-                var mes=new Message(data.userName, data.message, Date.now());
-                messages.push(mes);
-                console.log("mesagges length is "+messages.length);
-
+                  message: data.message});                
             });
             socket.on("disconnect", ()=>{
               connections.splice(connections.indexOf(socket), 1);
               console.log(socket.id +" disconnected from server");
+              socket.leave("app");
             }); 
             
             //VIDEO STEUERUNG
@@ -102,17 +84,23 @@ class AppServer {
             socket.on("stopping player", (receivedVideoTime)=>{
               io.sockets.in("app").emit("just stop", {videoTime: receivedVideoTime});
             });
+
+            //Hier lauschen wir auf Aenderungen des Videorsrc, wenn ein Video aus PlayList ausgewaehlt wird
+            socket.on("change video from playlist", (newSrcFromChangedVideo)=>{
+              console.log("appserver faengt newSrcFromChangedVideo "+newSrcFromChangedVideo);
+              io.sockets.in("app").emit("change video with new src", newSrcFromChangedVideo);
+            });
         });
     }
     /**   
      * Stops running express server 
      */
         stop() {
-        if (server === undefined) {
-            return;
-    }
-        server.close();
-        console.log("server closed");
+          if (server === undefined) {
+              return;
+        }
+          server.close();
+          console.log("server closed");
     }
   }
 

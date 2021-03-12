@@ -291,3 +291,11 @@ p {
 	}
 }
 /* End  Media Query For Desktop */
+
+.createdLink {
+	display: inline;
+	width: 10%;
+	height: 10%;
+	visibility: hidden;
+	border: 2px solid gray;
+}

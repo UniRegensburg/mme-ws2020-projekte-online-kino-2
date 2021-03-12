@@ -47,6 +47,21 @@ function publishClientLibraries() {
     fs.copyFileSync("node_modules/socket.io/dist/index.js", "libs/socketio/index.js");
     fs.copyFileSync("node_modules/socket.io/dist/socket.js", "libs/socketio/socket.js");
     fs.copyFileSync("node_modules/socket.io/dist/client.js", "libs/socketio/client.js");
+
+    console.log("Copying videojs-playlist library");
+    fs.mkdirSync("libs/videojs-playlist/", { recursive: true });
+    fs.copyFileSync("node_modules/videojs-playlist/dist/videojs-playlist.js", "libs/videojs-playlist/videojs-playlist.js");
+    fs.copyFileSync("node_modules/videojs-playlist/dist/videojs-playlist.es.js", "libs/videojs-playlist/videojs-playlist.es.js");
+    fs.copyFileSync("node_modules/videojs-playlist/dist/videojs-playlist.cjs.js", "libs/videojs-playlist/videojs-playlist.cjs.js");
+    fs.copyFileSync("node_modules/videojs-playlist/dist/videojs-playlist.min.js", "libs/videojs-playlist/videojs-playlist.min.js");
+
+    console.log("Copying videojs-playlist-ui library");
+    fs.mkdirSync("libs/videojs-playlist-ui/", { recursive: true });
+    fs.copyFileSync("node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.js", "libs/videojs-playlist-ui/videojs-playlist-ui.js");
+    fs.copyFileSync("node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.min.js", "libs/videojs-playlist-ui/videojs-playlist-ui.min.js");
+    fs.copyFileSync("node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.vertical.css", "libs/videojs-playlist-ui/videojs-playlist-ui.vertical.css");
+    fs.copyFileSync("node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.css", "libs/videojs-playlist-ui/videojs-playlist-ui.css");
+
 }
 
 build();

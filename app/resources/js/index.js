@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-env browser */
 //hier werden events, die auf 
 //der Seite des Clients wahrgenommen werden
