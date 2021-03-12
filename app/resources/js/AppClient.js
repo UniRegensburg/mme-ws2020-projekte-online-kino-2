@@ -37,6 +37,11 @@ class AppClient extends Observable {
             console.log("change video with new src received by client "+newSrc );
             this.notifyAll(new Event("change video with new src", newSrc));
         });
+
+        ws.on("new URL for PlayList", (newURL)=>{
+            console.log("NEW URL HERE"+newURL);
+            this.notifyAll(new Event("new URL for PlayList", newURL));
+        });
     }
 
     sendVideoStarting(time){
@@ -51,6 +56,11 @@ class AppClient extends Observable {
     sendNewVideoSrc(newSrcFromSelectedVideo){
         console.log("ws sendet das event change video from playlist "+newSrcFromSelectedVideo);
         ws.emit("change video from playlist", newSrcFromSelectedVideo);
+    }
+
+    sendNewURL(newURLForPlayList){
+        console.log("ws sendet das event NEW URL for playlist "+newURLForPlayList);
+        ws.emit("add new URL", newURLForPlayList);
     }
 }
 

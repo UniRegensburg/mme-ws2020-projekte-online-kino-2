@@ -90,6 +90,11 @@ class AppServer {
               console.log("appserver faengt newSrcFromChangedVideo "+newSrcFromChangedVideo);
               io.sockets.in("app").emit("change video with new src", newSrcFromChangedVideo);
             });
+
+            socket.on("add new URL", (newURLForPlayList)=>{
+              console.log("newURL received by server from client"+newURLForPlayList);
+              io.sockets.in("app").emit("new URL for PlayList", newURLForPlayList);
+            });
         });
     }
     /**   

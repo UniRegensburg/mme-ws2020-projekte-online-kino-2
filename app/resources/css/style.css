@@ -141,7 +141,7 @@ body {
 .frames-box {
     background-color: #d0dcde;
     border: 2px solid white;
-    
+    position: relative;
     height: 150px;
     overflow: auto; /*ob Scrollbalken mitdabei ist*/
     white-space: nowrap;
