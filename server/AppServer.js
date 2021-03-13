@@ -36,10 +36,10 @@ class AppServer {
     }
 
     start(port) {
-       /* app.get("/:room", function(req, res) {
+        /*app.get("/:room", function(req, res) {
           given_room = req.params.room;
           console.log("given_room "+given_room);
-          res.sendFile(__dirname + "/index.html");
+         // res.sendFile(__dirname + "/index.html");
         });*/
         console.log("wir sind in start-Methode von AppServer");
         server = http.createServer(app);
@@ -94,6 +94,11 @@ class AppServer {
             socket.on("add new URL", (newURLForPlayList)=>{
               console.log("newURL received by server from client"+newURLForPlayList);
               io.sockets.in("app").emit("new URL for PlayList", newURLForPlayList);
+            });
+
+            socket.on("sending sync info", (data)=>{
+              console.log("SERVER time "+data.time+" currsrc "+data.currentSrc);
+              io.sockets.in("app").emit("synchronized info", data);
             });
         });
     }

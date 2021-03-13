@@ -42,6 +42,15 @@ class AppClient extends Observable {
             console.log("NEW URL HERE"+newURL);
             this.notifyAll(new Event("new URL for PlayList", newURL));
         });
+
+        ws.on("synchronized info", (data)=>{
+            this.notifyAll(new Event("synchronized info", data));
+        });
+    }
+
+    sendSynchronizedInfo(time, currentSrc){
+        console.log("time "+time+" currsrc "+currentSrc);
+        ws.emit("sending sync info", {time: time, currentSrc: currentSrc});
     }
 
     sendVideoStarting(time){

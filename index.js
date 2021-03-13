@@ -4,7 +4,7 @@ import AppServer from "./server/AppServer.js";
 //var AppServer=require("./server/AppServer.js"),
 var appServer;
 /**
- * Starts webserver to serve files from "/app" folder
+ * Starts web çserver to serve files from "/app" folder
  */
 function init() {
     appServer = new AppServer("app", "libs", "utils");
@@ -12,7 +12,7 @@ function init() {
     console.log("appServer " + appServer);
     console.log("Hallo, hier bin ich");
     appServer.start(5500);
-
+    
 }
 
 /*function synchronizeVideoData (){
