@@ -36,10 +36,10 @@ class AppServer {
     }
 
     start(port) {
-        /*app.get("/:room", function(req, res) {
+       /* app.get("/:room", function(req, res) {
           given_room = req.params.room;
           console.log("given_room "+given_room);
-         // res.sendFile(__dirname + "/index.html");
+          res.sendFile(__dirname + "/index.html");
         });*/
         console.log("wir sind in start-Methode von AppServer");
         server = http.createServer(app);
@@ -99,6 +99,11 @@ class AppServer {
             socket.on("sending sync info", (data)=>{
               console.log("SERVER time "+data.time+" currsrc "+data.currentSrc);
               io.sockets.in("app").emit("synchronized info", data);
+            });
+
+            socket.on("sending new list", (myList)=>{
+              console.log("JSON.stringify(myList)) HERE "+myList);
+              io.sockets.in("app").emit("shuffled list", JSON.stringify(myList));
             });
         });
     }

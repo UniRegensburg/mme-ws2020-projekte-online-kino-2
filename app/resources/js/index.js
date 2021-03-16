@@ -21,14 +21,5 @@ function init() {
 //youtube links zum Probieren 
 //https://www.youtube.com/watch?v=d27gTrPPAyk
 //https://www.youtube.com/watch?v=C3lWwBslWqg
-/*function changeVideoUrl() {
-  console.log("in changeVideoURL Methode drin ");
-  document.getElementById("submitButton").addEventListener("click", () => {
-    let newUrl = document.getElementById("urlInput").value;
-    console.log(newUrl);
-    myPlayer.src({ type: "video/youtube", src:newUrl});
-    myPlayer.play();
-});
-}*/
 
 init();

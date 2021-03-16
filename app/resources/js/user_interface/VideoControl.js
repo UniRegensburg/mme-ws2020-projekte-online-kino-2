@@ -1,10 +1,15 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable no-undef */
+/* eslint-disable one-var */
 /* eslint-disable vars-on-top */
 /* eslint-disable quotes */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 
 import Observable from "../../../../utils/Observable.js";
-var playButton, pauseButton, syncButton, previousButton, nextButton, videoEl,
+//import VideoElement from "../VideoElement.js";
+//import Sources from "./Sources.js";
+var playButton, pauseButton, syncButton, shuffleButton, nextButton, videoEl,
 appClientHere, framesBox, submitButton, urlInputField, myList;
 
 class VideoControl extends Observable{
@@ -14,7 +19,7 @@ class VideoControl extends Observable{
         playButton=document.querySelector(".playButton");
         pauseButton=document.querySelector(".pauseButton");
         syncButton=document.querySelector(".syncButton");
-       // previousButton=document.querySelector(".previousButton");
+        shuffleButton=document.querySelector(".shuffleButton");
        // nextButton=document.querySelector(".nextButton");
         framesBox=document.querySelector(".frames-box");
 
@@ -36,21 +41,43 @@ class VideoControl extends Observable{
       //  videoEl.on("videoElSrc changed", this.changeVideo);
       //  framesBox.addEventListener("click", this.onPlayListElementClicked.bind(appClientHere));
         syncButton.addEventListener("click", this.sendSynchronization.bind(appClientHere));
+        shuffleButton.addEventListener("click", this.shufflePlayList.bind(appClientHere));
 
         appClientHere.addEventListener("new URL for PlayList", this.addNewVideoToPlayList);
         appClientHere.addEventListener("just play", this.playVideo);
         appClientHere.addEventListener("just stop", this.pauseVideo);
        // appClientHere.addEventListener("change video with new src", this.changeVideoElement);
         appClientHere.addEventListener("synchronized info", this.synchronizeInfo);
-
+        appClientHere.addEventListener("shuffled list", this.shuffleListForAll);
+        
         videoEl.playlist(myList);
         videoEl.playlistUi({className: "frames-box" , horizontal:true, playlistPicker:false});
         videoEl.playlist.autoadvance(0); //play through the playlist automatically
     }
 
     addVideoToPlayList(){
+        if(urlInputField.value===""){
+            return;
+        }
+        if(!(urlInputField.value.includes("https://www.youtube.com/watch?v=")) || (urlInputField.value.length!==43)) {
+            return;
+        }
+        /*myList.forEach(element => {
+            console.log("element.sources.src "+element.sources.src);
+        });*/
+       
+        
         appClientHere.sendNewURL(urlInputField.value);
     }
+
+    shufflePlayList(){
+        videoEl.playlist.shuffle({rest: true});
+        console.log("videoEl.playlist() HIER "+videoEl.playlist()+" myList "+myList);
+        appClientHere.sendShuffledList(videoEl.playlist());
+    }
+//YUOTUBE
+//https://www.youtube.com/watch?v=C3lWwBslWqg sting desert rose
+//https://www.youtube.com/watch?v=EgmXTmj62ic tamally maak
 
   /*  onPlayListElementClicked(ev){
         console.log("ev playListEl clicked "+ev);
@@ -58,7 +85,6 @@ class VideoControl extends Observable{
     }*/
 
     addNewVideoToPlayList(ev){
-        // eslint-disable-next-line no-undef
         var { id } = getVideoId(`${ev.data}`);
         myList.push({sources: [{
             src: `${ev.data}`,
@@ -66,10 +92,11 @@ class VideoControl extends Observable{
         }], thumbnail:[{
           src: `http://img.youtube.com/vi/${id}/hqdefault.jpg`,
         }]});
-        
         videoEl.playlist(myList);
         videoEl.playlistUi({className: "frames-box" , horizontal:true , playlistPicker:false});
         urlInputField.value="";
+        
+       // myList.push(new VideoElement(ev.data, id).getVideoElement());
     }
 
     /*changeVideo(){
@@ -110,6 +137,13 @@ class VideoControl extends Observable{
         videoEl.src({type:"video/youtube", src: ev.data.currentSrc});
         console.log("ev for synchronisation received "+ev+" ev.data.time "+ev.data.time +" ev.data.currscr "+ev.data.currentSrc);
         videoEl.currentTime(ev.data.time);
+    }
+
+    shuffleListForAll(ev){
+        videoEl.playlist(ev.data);
+        videoEl.playlistUi({className: "frames-box" , horizontal:true, playlistPicker:false});
+
+        console.log("shuffled playlist received "+ev.data);
     }
 
 }

@@ -28,11 +28,12 @@
         "nodemon": "^2.0.7",
         "socket.io": "^3.1.2",
         "socket.io-client": "^3.1.2",
+        "typeson": "^6.0.0",
+        "typeson-registry": "^1.0.0-alpha.39",
         "video.js": "^7.11.4",
         "videojs-playlist": "^4.3.1",
         "videojs-playlist-ui": "^3.8.0",
         "videojs-youtube": "^2.6.1",
         "ws": "^7.4.4"
-    },
-    "devDependencies": {}
+    }
 }

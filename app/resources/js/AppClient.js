@@ -1,5 +1,8 @@
+/* eslint-disable vars-on-top */
+/* eslint-disable one-var */
 /* eslint-disable no-console */
-
+// eslint-disable-next-line no-undef
+//import Typeson from "typeson";
 import { Observable, Event} from "../../../utils/Observable.js";
 
 var ws;
@@ -9,9 +12,6 @@ class AppClient extends Observable {
         super();
         // eslint-disable-next-line no-undef
         ws = io.connect();
-     //   ws.on("connect", ()=>{
-     //       ws.emit("room", room);
-     //   });
     }
 
     connectForChatting() {
@@ -46,11 +46,24 @@ class AppClient extends Observable {
         ws.on("synchronized info", (data)=>{
             this.notifyAll(new Event("synchronized info", data));
         });
+
+        ws.on("shuffled list", (json)=>{
+          //  var parsed = typeson.parse(json);
+          //  var revived = typeson.revive(json);
+            this.notifyAll(new Event("shuffled list", json));
+            console.log("JSON.parse(myList) REVIVED "+json);
+        });
     }
 
     sendSynchronizedInfo(time, currentSrc){
         console.log("time "+time+" currsrc "+currentSrc);
         ws.emit("sending sync info", {time: time, currentSrc: currentSrc});
+    }
+
+    sendShuffledList(myList){
+        // eslint-disable-next-line no-undef
+        console.log("sendShuffledList(myList) appClient" +myList);
+        ws.emit("sending new list", myList);
     }
 
     sendVideoStarting(time){
