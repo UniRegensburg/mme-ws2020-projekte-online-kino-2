@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-undef */
 /* eslint-disable one-var */
@@ -9,8 +10,8 @@
 import Observable from "../../../../utils/Observable.js";
 //import VideoElement from "../VideoElement.js";
 //import Sources from "./Sources.js";
-var playButton, pauseButton, syncButton, shuffleButton, nextButton, videoEl,
-appClientHere, framesBox, submitButton, urlInputField, myList;
+var playButton, pauseButton, syncButton, shuffleButton, reverseButton, videoEl,
+appClientHere, sortButton, submitButton, urlInputField, myList, framesBox;
 
 class VideoControl extends Observable{
     constructor(appClient){
@@ -20,9 +21,9 @@ class VideoControl extends Observable{
         pauseButton=document.querySelector(".pauseButton");
         syncButton=document.querySelector(".syncButton");
         shuffleButton=document.querySelector(".shuffleButton");
-       // nextButton=document.querySelector(".nextButton");
+        reverseButton=document.querySelector(".reverseButton");
         framesBox=document.querySelector(".frames-box");
-
+        sortButton=document.querySelector(".sortButton");
         submitButton=document.querySelector("#submitButton");
         urlInputField=document.querySelector("#urlInput");
 
@@ -32,21 +33,20 @@ class VideoControl extends Observable{
         myList=[{sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
-        }], thumbnail: "https://i.ytimg.com/vi/2V1fYJntoFA/hqdefault.jpg"}];
+        }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/hqdefault.jpg"}]}];
 
         appClientHere.connectForVideoControlling();
         submitButton.addEventListener("click", this.addVideoToPlayList);
         playButton.addEventListener("click", this.onPlayButtonClicked.bind(appClientHere));
         pauseButton.addEventListener("click", this.onPauseButtonClicked.bind(appClientHere));
-      //  videoEl.on("videoElSrc changed", this.changeVideo);
-      //  framesBox.addEventListener("click", this.onPlayListElementClicked.bind(appClientHere));
+        reverseButton.addEventListener("click", this.onReverseButtonClicked.bind(appClientHere));
+        sortButton.addEventListener("click", this.onSortButtonClicked.bind(appClientHere));
         syncButton.addEventListener("click", this.sendSynchronization.bind(appClientHere));
         shuffleButton.addEventListener("click", this.shufflePlayList.bind(appClientHere));
 
         appClientHere.addEventListener("new URL for PlayList", this.addNewVideoToPlayList);
         appClientHere.addEventListener("just play", this.playVideo);
         appClientHere.addEventListener("just stop", this.pauseVideo);
-       // appClientHere.addEventListener("change video with new src", this.changeVideoElement);
         appClientHere.addEventListener("synchronized info", this.synchronizeInfo);
         appClientHere.addEventListener("shuffled list", this.shuffleListForAll);
         
@@ -57,34 +57,33 @@ class VideoControl extends Observable{
 
     addVideoToPlayList(){
         if(urlInputField.value===""){
+            alert("Kein leeres Element");
             return;
         }
         if(!(urlInputField.value.includes("https://www.youtube.com/watch?v=")) || (urlInputField.value.length!==43)) {
+            alert("Die YouTube-URL soll richtig sein");
             return;
         }
-        /*myList.forEach(element => {
-            console.log("element.sources.src "+element.sources.src);
-        });*/
-       
+        if(videoEl.playlist.contains(urlInputField.value)){
+            alert("Dieses Video existiert schon in PlayList");
+            return;
+
+        }
         
         appClientHere.sendNewURL(urlInputField.value);
     }
 
     shufflePlayList(){
-        videoEl.playlist.shuffle({rest: true});
+        videoEl.playlist.shuffle({rest: false});
         console.log("videoEl.playlist() HIER "+videoEl.playlist()+" myList "+myList);
-        appClientHere.sendShuffledList(videoEl.playlist());
+        appClientHere.sendAlteredList(videoEl.playlist());
     }
 //YUOTUBE
 //https://www.youtube.com/watch?v=C3lWwBslWqg sting desert rose
 //https://www.youtube.com/watch?v=EgmXTmj62ic tamally maak
 
-  /*  onPlayListElementClicked(ev){
-        console.log("ev playListEl clicked "+ev);
-        videoEl.trigger("videoElSrc changed");
-    }*/
-
     addNewVideoToPlayList(ev){
+        console.log("HERE NEW SRC "+ev.data);
         var { id } = getVideoId(`${ev.data}`);
         myList.push({sources: [{
             src: `${ev.data}`,
@@ -95,13 +94,7 @@ class VideoControl extends Observable{
         videoEl.playlist(myList);
         videoEl.playlistUi({className: "frames-box" , horizontal:true , playlistPicker:false});
         urlInputField.value="";
-        
-       // myList.push(new VideoElement(ev.data, id).getVideoElement());
-    }
-
-    /*changeVideo(){
-        appClientHere.sendNewVideoSrc(videoEl.currentSrc());
-    }*/
+        }
 
     onPlayButtonClicked(){
         console.log("playButton gedrueckt um die Zeit "+videoEl.currentTime());
@@ -110,6 +103,20 @@ class VideoControl extends Observable{
 
     onPauseButtonClicked(){
         appClientHere.sendVideoStopping(videoEl.currentTime());
+    }
+
+    onSortButtonClicked(){
+       // videoEl.playlist.sort(function(a, b){
+         //   return a.duration-b.duration;
+        //});
+        videoEl.playlist.sort();
+        appClientHere.sendAlteredList(videoEl.playlist());
+
+    }
+
+    onReverseButtonClicked(){
+        videoEl.playlist.reverse();
+        appClientHere.sendAlteredList(videoEl.playlist());
     }
 
     sendSynchronization(){
@@ -127,23 +134,27 @@ class VideoControl extends Observable{
         videoEl.pause();
     }
 
-    /*changeVideoElement(ev){
-        console.log("ev.data.src "+ev.data);
-        videoEl.src({type:"video/youtube", src: ev.data});
-       // videoEl.play();
-    }*/
-
     synchronizeInfo(ev){
         videoEl.src({type:"video/youtube", src: ev.data.currentSrc});
         console.log("ev for synchronisation received "+ev+" ev.data.time "+ev.data.time +" ev.data.currscr "+ev.data.currentSrc);
         videoEl.currentTime(ev.data.time);
     }
 
-    shuffleListForAll(ev){
-        videoEl.playlist(ev.data);
+    shuffleListForAll(ev){       
+        var newMyList=[];
+       // console.log("shuffled playlist received "+ev.data +" length "+ev.data.length);
+       // console.log("sources "+JSON.parse(ev.data)+" JSON.parse(ev.data) length "+JSON.parse(ev.data).length);
+        var parsedData=JSON.parse(ev.data);
+            for(var i=0; i<parsedData.length; i++){
+                    newMyList.push({sources: [{
+                    src: parsedData[i].sources[0].src,
+                    type: 'video/youtube',
+                }], thumbnail:[{
+                    src: parsedData[i].thumbnail[0].src,
+                }]});
+            }
+        videoEl.playlist(newMyList);
         videoEl.playlistUi({className: "frames-box" , horizontal:true, playlistPicker:false});
-
-        console.log("shuffled playlist received "+ev.data);
     }
 
 }

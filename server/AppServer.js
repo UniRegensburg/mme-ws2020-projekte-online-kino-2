@@ -10,9 +10,7 @@ import {Observable, Event} from "../utils/Observable.js";
 
 var app, server, io,
     //users = [], 
-    connections = [],
-    messages = [], given_room="";
-
+    connections = [], given_room, userroomes={};
 
 /**
  * AppServer
@@ -28,7 +26,7 @@ class AppServer {
     constructor(appDir, libDir, utilsDir) {
         app = express();
         // Static serving client code
-        app.use("/app", express.static(appDir));
+        app.use("/:room", express.static(appDir));
         // Static serving client libraries
         app.use("/libs", express.static(libDir));
         app.use("/utils", express.static(utilsDir));
@@ -53,15 +51,20 @@ class AppServer {
 
         io.sockets.on("connection", function(socket) { //der erstellte Server registriert angebundene Sockets
             connections.push(socket);
-            console.log("socket is " + socket.id + connections.length);
-            socket.join("app");
-          //  var eventNewSocket=new Event("new socket registered");
-          //  this.notifyAll(eventNewSocket);
+            socket.on("roomId", (roomLink)=>{
+              socket.given_room=roomLink;
+              userroomes[socket.id]=given_room;
+              
+              console.log("userroomes "+userroomes+"userroomes[given_room]"+userroomes[socket.id]);
+              console.log("socket is " + socket.id + " connections.length "+connections.length);
+              console.log("givenroom sieht so aus! "+socket.given_room);
+              socket.join(socket.given_room);
+            });
             //CHAT
             socket.on("send message", (data)=> { //Server erwartet von irgendwelchem Client das event "send message"
               console.log("data socket on is "+data + data.userName +data.message);
               // Server schickt unter dem event "new message" an alle anderern Clients das frueher empfangene event 
-              io.sockets.in("app").emit("new message", { 
+              io.sockets.in(socket.given_room).emit("new message", { 
                   userName: data.userName, 
                   timeStamp: Date.now(),
                   message: data.message});                
@@ -69,41 +72,48 @@ class AppServer {
             socket.on("disconnect", ()=>{
               connections.splice(connections.indexOf(socket), 1);
               console.log(socket.id +" disconnected from server");
-              socket.leave("app");
+              socket.leave(socket.given_room);
             }); 
             
             //VIDEO STEUERUNG
             //Hier starten wir den Player, egal um welche Zeit
             socket.on("starting player", (receivedVideoTime)=>{
               console.log("starting play event gefangen"+receivedVideoTime);
-              io.sockets.in("app").emit("just play", {videoTime: receivedVideoTime});
+              io.sockets.in(socket.given_room).emit("just play", {videoTime: receivedVideoTime});
               console.log("okay, videoEl abgesendet");
             });
 
             //Hier pausieren wir den Player, egal um welche Zeit
             socket.on("stopping player", (receivedVideoTime)=>{
-              io.sockets.in("app").emit("just stop", {videoTime: receivedVideoTime});
+              io.sockets.in(socket.given_room).emit("just stop", {videoTime: receivedVideoTime});
             });
 
             //Hier lauschen wir auf Aenderungen des Videorsrc, wenn ein Video aus PlayList ausgewaehlt wird
             socket.on("change video from playlist", (newSrcFromChangedVideo)=>{
               console.log("appserver faengt newSrcFromChangedVideo "+newSrcFromChangedVideo);
-              io.sockets.in("app").emit("change video with new src", newSrcFromChangedVideo);
+              io.sockets.in(socket.given_room).emit("change video with new src", newSrcFromChangedVideo);
             });
 
             socket.on("add new URL", (newURLForPlayList)=>{
               console.log("newURL received by server from client"+newURLForPlayList);
-              io.sockets.in("app").emit("new URL for PlayList", newURLForPlayList);
+              io.sockets.in(socket.given_room).emit("new URL for PlayList", newURLForPlayList);
             });
 
             socket.on("sending sync info", (data)=>{
               console.log("SERVER time "+data.time+" currsrc "+data.currentSrc);
-              io.sockets.in("app").emit("synchronized info", data);
+              io.sockets.in(socket.given_room).emit("synchronized info", data);
             });
 
             socket.on("sending new list", (myList)=>{
               console.log("JSON.stringify(myList)) HERE "+myList);
-              io.sockets.in("app").emit("shuffled list", JSON.stringify(myList));
+              var parsedData=JSON.parse(myList);
+              console.log("parsedData.length"+parsedData.length);
+              for(var i=0; i<parsedData.length; i++){
+                  console.log("parsedData[i].sources "+parsedData[i].sources+" parsedData[i].thumbnail "+parsedData[i].thumbnail[0].src+
+                  " parsedData[i].sources.src "+parsedData[i].sources[0].src);
+              }
+            //  io.sockets.in(socket.given_room).emit("shuffled list", JSON.stringify(myList));
+            io.sockets.in(socket.given_room).emit("shuffled list", myList);
             });
         });
     }

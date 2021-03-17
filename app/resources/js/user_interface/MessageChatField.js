@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable one-var */
 /* eslint-disable no-console */
 
@@ -41,6 +42,8 @@ class MessageChatField {
 
     onMessageSend() {
         if (userNameEl.value === "" || messageEl.value === "") {
+            alert("Bitte Name und Text eingeben!");
+
             return;
         }
         appClientHere.sendMessage(userNameEl.value, messageEl.value);

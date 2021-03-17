@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable vars-on-top */
 /* eslint-disable one-var */
 /* eslint-disable no-console */
@@ -6,12 +7,17 @@
 import { Observable, Event} from "../../../utils/Observable.js";
 
 var ws;
+var roomPath="http://localhost:5500";
 
 class AppClient extends Observable {
     constructor() {
         super();
+        var windowLocation=location.pathname;
+        console.log("windowlocation "+windowLocation);
         // eslint-disable-next-line no-undef
         ws = io.connect();
+        ws.emit("roomId", windowLocation);
+
     }
 
     connectForChatting() {
@@ -48,8 +54,6 @@ class AppClient extends Observable {
         });
 
         ws.on("shuffled list", (json)=>{
-          //  var parsed = typeson.parse(json);
-          //  var revived = typeson.revive(json);
             this.notifyAll(new Event("shuffled list", json));
             console.log("JSON.parse(myList) REVIVED "+json);
         });
@@ -60,10 +64,10 @@ class AppClient extends Observable {
         ws.emit("sending sync info", {time: time, currentSrc: currentSrc});
     }
 
-    sendShuffledList(myList){
+    sendAlteredList(myList){
         // eslint-disable-next-line no-undef
         console.log("sendShuffledList(myList) appClient" +myList);
-        ws.emit("sending new list", myList);
+        ws.emit("sending new list", JSON.stringify(myList));
     }
 
     sendVideoStarting(time){
