@@ -62,18 +62,6 @@ function publishClientLibraries() {
     fs.copyFileSync("node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.vertical.css", "libs/videojs-playlist-ui/videojs-playlist-ui.vertical.css");
     fs.copyFileSync("node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.css", "libs/videojs-playlist-ui/videojs-playlist-ui.css");
 
-    console.log("Copying typeson library");
-    fs.mkdirSync("libs/typeson/", { recursive: true });
-    fs.copyFileSync("node_modules/typeson/dist/typeson.js", "libs/typeson/typeson.js");
-    fs.copyFileSync("node_modules/typeson/dist/typeson.min.js", "libs/typeson/typeson.min.js");
-
-
-    fs.mkdirSync("libs/typeson-registry/", { recursive: true });
-    fs.copyFileSync("node_modules/typeson-registry/dist/presets/builtin.js", "libs/typeson-registry/builtin.js");
-    fs.copyFileSync("node_modules/typeson-registry/dist/presets/socketio.js", "libs/typeson-registry/socketio.js");
-
-
-
 }
 
 build();

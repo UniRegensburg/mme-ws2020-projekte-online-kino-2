@@ -16,6 +16,7 @@ function addMessageToBoard(message, boardEl) {
     messageElement.querySelector(".timestamp").innerHTML = date;
     messageElement.querySelector(".user-name").innerHTML = message.userName;
     messageElement.querySelector(".text").innerHTML = message.message;
+    messageElement.querySelector(".savedUserName").innerHTML=message.savedUserName;
     boardEl.insertBefore(messageElement, boardEl.firstChild);
     console.log("date is "+date+" messageElement is "+messageElement+ " tmpElement is "+tmpElement);
     
@@ -29,7 +30,6 @@ class MessageChatField {
         sendMessageButton = document.querySelector(".editor input[type=\"button\"]");
         userNameEl = document.querySelector(".editor input[type=\"text\"]");
         messageEl = document.querySelector(".editor textarea");
-
         appClientHere.connectForChatting();
         sendMessageButton.addEventListener("click", this.onMessageSend.bind(appClientHere));
         appClientHere.addEventListener("new message", this.onMessageReceived);
@@ -43,7 +43,6 @@ class MessageChatField {
     onMessageSend() {
         if (userNameEl.value === "" || messageEl.value === "") {
             alert("Bitte Name und Text eingeben!");
-
             return;
         }
         appClientHere.sendMessage(userNameEl.value, messageEl.value);
