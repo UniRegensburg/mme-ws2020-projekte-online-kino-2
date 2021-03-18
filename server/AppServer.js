@@ -6,12 +6,12 @@
 /* eslint-disable one-var */
 /* eslint-disable vars-on-top */
 /* eslint-env node */
+import GenerateRoom from "../app/resources/startscreen_rep/GenerateRoom.js";
 import animals from "animals";
 import * as SocketIO from "socket.io";
 import express from "express";
 import http from "http";
 import {Observable, Event} from "../utils/Observable.js";
-import GenerateRoom from "../app/resources/startscreen_rep/GenerateRoom.js";
 
 var app, server, io,
     users = [], animalNames=[],
@@ -30,6 +30,8 @@ class AppServer {
   
     constructor(appDir, libDir, utilsDir) {
         app = express();
+        var roomLinksArray=GenerateRoom.getRoomLinksArray();
+        console.log("roomLinksArray "+roomLinksArray);
         
         const middleware = (req, res, next) => {
           console.log("HIERMAL:" +req.params.room);
@@ -37,10 +39,9 @@ class AppServer {
       };
       
       app.get('/:room', middleware, (req, res, next) => {
-          newGiven_room = req.params.room;
+          newGiven_room = req.params.room; 
           //console.log("HIERE!!! "+newGiven_room+" GenerateRoom.getArray "+GenerateRoom.getLinkArray());
             if(newGiven_room==="iuliia" || newGiven_room==="app"){
-           //  if(GenerateRoom.getLinkArray().includes(newGiven_room)){
               res.status(404).send("Fehler 404! Keine Verbindung");
             }
             else{

@@ -28,11 +28,21 @@ class VideoControl extends Observable{
         sortButton=document.querySelector(".sortButton");
         submitButton=document.querySelector("#submitButton");
         urlInputField=document.querySelector("#urlInput");
-
         // eslint-disable-next-line no-undef
         videoEl=videojs('my-player');
-        var id = getVideoId("https://www.youtube.com/watch?v=2V1fYJntoFA");
-        console.log("YOUTUBE API is "+https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y);
+
+        //HIER auf JSON in API zum YouTube zugreifen und es parsen
+        var URL="https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y";
+        var promise = new Promise(function(resolve, reject) {
+
+            var json=fetch(URL).then((response) => response.json()).then((data) => { console.log("data from api " +data);});
+            console.log("JSON "+json);
+            resolve();
+        });
+
+        console.log("promise "+promise);
+      //  var id = getVideoId("https://www.youtube.com/watch?v=2V1fYJntoFA");
+       // console.log("YOUTUBE API is "+https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y);
         myList=[{duration:"", sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
