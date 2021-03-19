@@ -72,7 +72,14 @@ function publishClientLibraries() {
     fs.copyFileSync("node_modules/typeson-registry/dist/presets/builtin.js", "libs/typeson-registry/builtin.js");
     fs.copyFileSync("node_modules/typeson-registry/dist/presets/socketio.js", "libs/typeson-registry/socketio.js");
 
+    fs.mkdirSync("libs/get-video-duration/", { recursive: true });
+    fs.copyFileSync("node_modules/get-video-duration/dist/es6/index.js", "libs/get-video-duration/index.js");
+    fs.copyFileSync("node_modules/get-video-duration/dist/es6/index.d.ts", "libs/get-video-duration/index.d.ts");
+    fs.copyFileSync("node_modules/get-video-duration/dist/es6/index.js.map", "libs/get-video-duration/index.js.map");
 
+    fs.mkdirSync("libs/youtube-duration/", { recursive: true });
+    fs.copyFileSync("node_modules/youtube-duration/format.js", "libs/youtube-duration/format.js");
+    fs.copyFileSync("node_modules/youtube-duration/index.js", "libs/youtube-duration/index.js");
 
 }
 
