@@ -4,7 +4,7 @@ import AppServer from "./server/AppServer.js";
 //var AppServer=require("./server/AppServer.js"),
 var appServer;
 /**
- * Starts web çserver to serve files from "/app" folder
+ * Starts web server to serve files from "/app" folder
  */
 function init() {
     appServer = new AppServer("app", "libs", "utils");

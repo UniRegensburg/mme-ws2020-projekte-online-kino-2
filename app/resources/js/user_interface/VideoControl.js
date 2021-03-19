@@ -6,11 +6,14 @@
 /* eslint-disable quotes */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
+
+//import ytDuration from "youtube-duration";
 import Observable from "../../../../utils/Observable.js";
 //import VideoElement from "../VideoElement.js";
 //import Sources from "./Sources.js";
 var playButton, pauseButton, syncButton, shuffleButton, reverseButton, videoEl,
 appClientHere, sortButton, submitButton, urlInputField, myList, framesBox;
+//ytDuration.format("PT3M11S");
 
 class VideoControl extends Observable{
     constructor(appClient){
@@ -25,11 +28,22 @@ class VideoControl extends Observable{
         sortButton=document.querySelector(".sortButton");
         submitButton=document.querySelector("#submitButton");
         urlInputField=document.querySelector("#urlInput");
-
         // eslint-disable-next-line no-undef
         videoEl=videojs('my-player');
-     
-        myList=[{sources: [{
+
+        //HIER auf JSON in API zum YouTube zugreifen und es parsen
+        var URL="https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y";
+        var promise = new Promise(function(resolve, reject) {
+
+            var json=fetch(URL).then((response) => response.json()).then((data) => { console.log("data from api " +data);});
+            console.log("JSON "+json);
+            resolve();
+        });
+
+        console.log("promise "+promise);
+      //  var id = getVideoId("https://www.youtube.com/watch?v=2V1fYJntoFA");
+       // console.log("YOUTUBE API is "+https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y);
+        myList=[{duration:"", sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
         }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/hqdefault.jpg"}]}];
@@ -40,15 +54,14 @@ class VideoControl extends Observable{
         pauseButton.addEventListener("click", this.onPauseButtonClicked.bind(appClientHere));
         reverseButton.addEventListener("click", this.onReverseButtonClicked.bind(appClientHere));
         sortButton.addEventListener("click", this.onSortButtonClicked.bind(appClientHere));
-        syncButton.addEventListener("click", this.sendSynchronization.bind(appClientHere));
-        shuffleButton.addEventListener("click", this.shufflePlayList.bind(appClientHere));
+        syncButton.addEventListener("click", this.onSyncButtonClicked.bind(appClientHere));
+        shuffleButton.addEventListener("click", this.onShuffleButtonClicked.bind(appClientHere));
 
         appClientHere.addEventListener("new URL for PlayList", this.addNewVideoToPlayList);
         appClientHere.addEventListener("just play", this.playVideo);
         appClientHere.addEventListener("just stop", this.pauseVideo);
         appClientHere.addEventListener("synchronized info", this.synchronizeInfo);
-        appClientHere.addEventListener("shuffled list", this.shuffleListForAll);
-        appClientHere.addEventListener("sorted by Duration", this.shuffleListForAll);
+        appClientHere.addEventListener("altered list", this.alterListForAll);
         
         videoEl.playlist(myList);
         videoEl.playlistUi({className: "frames-box" , horizontal:true, playlistPicker:false});
@@ -60,7 +73,7 @@ class VideoControl extends Observable{
             alert("Kein leeres Element");
             return;
         }
-        if(!(urlInputField.value.includes("https://www.youtube.com/watch?v=")) || (urlInputField.value.length!==43)) {
+        if(!(urlInputField.value.includes("https://www.youtube.com/watch?v="))) {
             alert("Die YouTube-URL soll richtig sein");
             return;
         }
@@ -73,11 +86,12 @@ class VideoControl extends Observable{
         appClientHere.sendNewURL(urlInputField.value);
     }
 
-
-    shufflePlayList(){
+    onShuffleButtonClicked(){
         videoEl.playlist.shuffle({rest: false});
         console.log("videoEl.playlist() HIER "+videoEl.playlist()+" myList "+myList);
         appClientHere.sendAlteredList(videoEl.playlist());
+        appClientHere.sendSynchronizedInfo(videoEl.currentTime(), videoEl.currentSrc());
+
     }
 //YUOTUBE
 //https://www.youtube.com/watch?v=C3lWwBslWqg sting desert rose
@@ -128,8 +142,6 @@ class VideoControl extends Observable{
         trueDuration = trueDuration + parseInt(timeDuration[0]);
     }
 
-
-   
     myList.push({duration: trueDuration, sources: [{
             src: `${ev.data}`,
             type: 'video/youtube',
@@ -166,7 +178,8 @@ class VideoControl extends Observable{
         appClientHere.sendAlteredList(videoEl.playlist());
     }
 
-    sendSynchronization(){
+    onSyncButtonClicked(){
+        appClientHere.sendAlteredList(videoEl.playlist());
         appClientHere.sendSynchronizedInfo(videoEl.currentTime(), videoEl.currentSrc());
     }
 
@@ -187,7 +200,7 @@ class VideoControl extends Observable{
         videoEl.currentTime(ev.data.time);
     }
 
-    shuffleListForAll(ev){       
+    alterListForAll(ev){       
         var newMyList=[];
        // console.log("shuffled playlist received "+ev.data +" length "+ev.data.length);
        // console.log("sources "+JSON.parse(ev.data)+" JSON.parse(ev.data) length "+JSON.parse(ev.data).length);

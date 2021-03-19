@@ -53,8 +53,8 @@ class AppClient extends Observable {
             this.notifyAll(new Event("synchronized info", data));
         });
 
-        ws.on("shuffled list", (json)=>{
-            this.notifyAll(new Event("shuffled list", json));
+        ws.on("altered list", (json)=>{
+            this.notifyAll(new Event("altered list", json));
             console.log("JSON.parse(myList) REVIVED "+json);
         });
     }

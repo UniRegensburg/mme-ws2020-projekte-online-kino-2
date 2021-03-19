@@ -1,18 +1,23 @@
+/* eslint-disable quotes */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 /* eslint-disable one-var */
 /* eslint-disable vars-on-top */
 /* eslint-env node */
+import GenerateRoom from "../app/resources/startscreen_rep/GenerateRoom.js";
+import animals from "animals";
 import * as SocketIO from "socket.io";
 import express from "express";
 import http from "http";
 import {Observable, Event} from "../utils/Observable.js";
 
 var app, server, io,
-    //users = [], 
-    connections = [], given_room, userroomes={};
+    users = [], animalNames=[],
+    connections = [], given_room, userroomes={}, newGiven_room;
 
-/**
+    /**
  * AppServer
  *
  * Creates a simple web server by using express to static serve files from a given directory.
@@ -25,12 +30,30 @@ class AppServer {
   
     constructor(appDir, libDir, utilsDir) {
         app = express();
-        // Static serving client code
-        app.use("/:room", express.static(appDir));
-        // Static serving client libraries
-        app.use("/libs", express.static(libDir));
-        app.use("/utils", express.static(utilsDir));
+        var roomLinksArray=GenerateRoom.getRoomLinksArray();
+        console.log("roomLinksArray "+roomLinksArray);
         
+        const middleware = (req, res, next) => {
+          console.log("HIERMAL:" +req.params.room);
+          next();
+      };
+      
+      app.get('/:room', middleware, (req, res, next) => {
+          newGiven_room = req.params.room; 
+          //console.log("HIERE!!! "+newGiven_room+" GenerateRoom.getArray "+GenerateRoom.getLinkArray());
+            if(newGiven_room==="iuliia" || newGiven_room==="app"){
+              res.status(404).send("Fehler 404! Keine Verbindung");
+            }
+            else{
+              next();
+            }
+          });       
+      // Static serving client code
+      app.use("/:room", express.static(appDir));
+
+      // Static serving client libraries
+      app.use("/libs", express.static(libDir));
+      app.use("/utils", express.static(utilsDir));
     }
 
     start(port) {
@@ -44,28 +67,34 @@ class AppServer {
         console.log("Kommen wir hierhin?");
         server.listen(port);
         console.log(
-            `AppServer started! Client available at http://localhost:${port}/app`
+          `AppServer started! Client available at http://localhost:${port}/app`
         );
         io = new SocketIO.Server(server);
         console.log("io hier" + io);
 
         io.sockets.on("connection", function(socket) { //der erstellte Server registriert angebundene Sockets
-            connections.push(socket);
-            socket.on("roomId", (roomLink)=>{
+        //  var randomAnimal=animals();
+        //  if(animalNames.includes(randomAnimal)){
+        //    socket.username=randomAnimal;
+        //    animalNames.push(socket.username);
+        //  }
+          socket.username=animals();
+          socket.on("roomId", (roomLink)=>{
               socket.given_room=roomLink;
-              userroomes[socket.id]=given_room;
-              
-              console.log("userroomes "+userroomes+"userroomes[given_room]"+userroomes[socket.id]);
-              console.log("socket is " + socket.id + " connections.length "+connections.length);
+              userroomes[socket.id]=socket.given_room;
+              console.log("userroomes "+userroomes+" userroomes[socket.id] "+userroomes[socket.id]);
+              console.log("socket is " + socket.id);
               console.log("givenroom sieht so aus! "+socket.given_room);
               socket.join(socket.given_room);
+              console.log("io.sockets.adapter.rooms all "+io.sockets.adapter.rooms.get(socket.given_room).size);
             });
+            
             //CHAT
             socket.on("send message", (data)=> { //Server erwartet von irgendwelchem Client das event "send message"
               console.log("data socket on is "+data + data.userName +data.message);
-              // Server schickt unter dem event "new message" an alle anderern Clients das frueher empfangene event 
               io.sockets.in(socket.given_room).emit("new message", { 
                   userName: data.userName, 
+                  savedUserName: socket.username,
                   timeStamp: Date.now(),
                   message: data.message});                
             });
@@ -106,14 +135,7 @@ class AppServer {
 
             socket.on("sending new list", (myList)=>{
               console.log("JSON.stringify(myList)) HERE "+myList);
-              var parsedData=JSON.parse(myList);
-              console.log("parsedData.length"+parsedData.length);
-              for(var i=0; i<parsedData.length; i++){
-                  console.log("parsedData[i].sources "+parsedData[i].sources+" parsedData[i].thumbnail "+parsedData[i].thumbnail[0].src+
-                  " parsedData[i].sources.src "+parsedData[i].sources[0].src);
-              }
-            //  io.sockets.in(socket.given_room).emit("shuffled list", JSON.stringify(myList));
-            io.sockets.in(socket.given_room).emit("shuffled list", myList);
+              io.sockets.in(socket.given_room).emit("altered list", myList);
             });
         });
     }

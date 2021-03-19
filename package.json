@@ -20,6 +20,7 @@
     "author": "Alexander Bazo <alexander.bazo@ur.de>",
     "license": "MIT",
     "dependencies": {
+        "animals": "^0.0.3",
         "eiows": "^3.4.1",
         "eslint": "^7.21.0",
         "express": "^4.17.1",
@@ -30,8 +31,6 @@
         "nodemon": "^2.0.7",
         "socket.io": "^3.1.2",
         "socket.io-client": "^3.1.2",
-        "typeson": "^6.0.0",
-        "typeson-registry": "^1.0.0-alpha.39",
         "video.js": "^7.11.4",
         "videojs-playlist": "^4.3.1",
         "videojs-playlist-ui": "^3.8.0",

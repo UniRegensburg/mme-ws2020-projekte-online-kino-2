@@ -81,6 +81,8 @@ p {
     border-radius: 50%;
 }
 
+
+
 /* Hero Section */
 #hero {
 	/*background-image: url(\app\resources\img\background_img.jpg);*/
@@ -148,11 +150,12 @@ p {
 
 /* End Hero Section */
 
+
 /* Footer */
 #footer {
 	background-image: linear-gradient( #0e3545 0%, #485563 100%);
+    
 }
-
 #footer .footer {
 	min-height: 50px;
 	flex-direction: column;
@@ -251,11 +254,8 @@ p {
 		height: 100%;
 	}
 	/* End Project */
-
-
-
-	
 }
+
 /* End Media Query For Tablet */
 
 /* Media Query For Desktop */
@@ -289,10 +289,47 @@ p {
 }
 /* End  Media Query For Desktop */
 
-.createdLink {
+/* .createdLink {
 	display: inline;
 	width: 10%;
 	height: 10%;
 	visibility: hidden;
 	border: 2px solid gray;
+	color: aliceblue;
+	font-size: large;
+} */
+
+#hero .createdLink {
+	align-items: center;
+	justify-content: center;
+	display: inline;
+	padding: 10px 30px;
+	color: white;
+	background-color: transparent;
+	border: 2px solid #d0dcde;
+	font-size: 2rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	margin-top: 30px;
+	transition: .3s ease;
+	transition-property: background-color, color;
+}
+button {
+	display: inline-block;
+	padding: 10px 30px;
+	color: white;
+	background-color: transparent;
+	border: 2px solid #d0dcde;
+	font-size: 2rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	margin-top: 30px;
+	transition: .3s ease;
+	transition-property: background-color, color;
+
+}
+
+.genLink{
+	align-content: center;
+	padding-left: 25%;
 }
