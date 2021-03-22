@@ -18,7 +18,7 @@ function onNewMessageFromClient(data) {
     //server io schickt an alle angebundenen
     //Sockets event "new message"
     io.sockets.emit("new message", () => {
-        var mes = new Message(data.from, data.data, data.time);
+        var mes = new Message(Message.NEW_MESSAGE, data.data, data.time);
         messages.push(mes);
     });
 }
