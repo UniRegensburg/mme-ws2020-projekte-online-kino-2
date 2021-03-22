@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 import * as SocketIO from "socket.io";
-import Message from "../app/resources/js/Message.js";
+import Message from "../shared/com/Message.js";
 
 var io,
     connections,

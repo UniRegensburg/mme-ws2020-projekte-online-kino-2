@@ -14,10 +14,12 @@ var app, server;
  */
 
 class AppServer {
-    constructor(appDir, libDir) {
+    constructor(appDir, libDir, sharedDir) {
         app = express();
         // Static serving client code
         app.use("/app", express.static(appDir));
+        // Static serving moduels shared between client and server
+        app.use("/shared", express.static(sharedDir));
         // Static serving client libraries
         app.use("/libs", express.static(libDir));
     }

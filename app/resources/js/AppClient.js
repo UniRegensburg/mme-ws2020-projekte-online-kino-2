@@ -6,8 +6,7 @@ import Logger from "/libs/logger/Logger.js";
 
 import io from "socket.io-client";
 import { Observable, Event } from "../../../utils/Observable.js";
-import Message from "./js/Message.js";
-//./Message.js
+import Message from "/shared/com/Message.js";
 
 function onMessage(message) {
     Logger.debug("message allgemein " + message);
