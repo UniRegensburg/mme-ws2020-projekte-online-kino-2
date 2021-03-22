@@ -1,4 +1,7 @@
 //var AppClient = require("../AppClient.js");
+
+// Importing debugging module
+import Logger from "./utils/Logger.js";
 import AppClient from "../AppClient.js";
 
 const MESSAGE_TEMPLATE = document.querySelector("#message-template").innerHTML.trim();
@@ -17,9 +20,9 @@ function addMessageToBoard(message, boardEl) {
 
 class MessageChatField {
 
-    constructor(){
-        
-        this.boardEl=document.querySelector(".board");
+    constructor() {
+
+        this.boardEl = document.querySelector(".board");
         this.sendMessageButton = document.querySelector(".editor input[type=\"button-send\"]");
         this.userNameEl = document.querySelector(".editor input[type=\"text\"]");
         this.messageEl = document.querySelector(".editor textarea");
@@ -30,7 +33,7 @@ class MessageChatField {
 
     }
 
-    onMessageReceived(ev){
+    onMessageReceived(ev) {
         ev.data.data.forEach(message => addMessageToBoard(message, this.boardEl));
     }
 
@@ -38,7 +41,7 @@ class MessageChatField {
         if (this.userNameEl.value === "" || this.messageEl.value === "") {
             return;
         }
-        console.log("Trying to send message");
+        Logger.debug("Trying to send message");
         AppClient.send(this.userNameEl.value, this.messageEl.value);
         this.messageEl.value = "";
     }

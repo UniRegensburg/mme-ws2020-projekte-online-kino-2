@@ -1,12 +1,16 @@
 //const { default: Observable } = require("../../../utils/Observable.js");
 //const Message = require("./Message.js");
+
+// Importing debugging module
+import Logger from "./utils/Logger.js";
+
 import io from "socket.io-client";
 import { Observable, Event } from "../../../utils/Observable.js";
 import Message from "./js/Message.js";
 //./Message.js
 
 function onMessage(message) {
-    console.log("message allgemein " + message);
+    Logger.debug("message allgemein " + message);
     this.notifyAll(new Event("new message", message));
 }
 
