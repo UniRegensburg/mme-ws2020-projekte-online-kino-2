@@ -5,7 +5,7 @@
 //und ausgeloest werden, behandelt
 
 // Importing debugging module
-import Logger from "./utils/Logger.js";
+import Logger from "/libs/logger/Logger.js";
 
 //const MessageChatField = require("./user_interface/MessageChatField.js");
 //import MessageChatField from "./user_interface/MessageChatField.js";

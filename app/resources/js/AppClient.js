@@ -2,7 +2,7 @@
 //const Message = require("./Message.js");
 
 // Importing debugging module
-import Logger from "./utils/Logger.js";
+import Logger from "/libs/logger/Logger.js";
 
 import io from "socket.io-client";
 import { Observable, Event } from "../../../utils/Observable.js";

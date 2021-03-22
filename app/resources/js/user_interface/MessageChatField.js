@@ -1,7 +1,7 @@
 //var AppClient = require("../AppClient.js");
 
 // Importing debugging module
-import Logger from "./utils/Logger.js";
+import Logger from "/libs/logger/Logger.js";
 import AppClient from "../AppClient.js";
 
 const MESSAGE_TEMPLATE = document.querySelector("#message-template").innerHTML.trim();
