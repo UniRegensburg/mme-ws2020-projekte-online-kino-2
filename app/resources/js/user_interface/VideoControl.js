@@ -43,7 +43,7 @@ class VideoControl extends Observable{
         console.log("promise "+promise);
       //  var id = getVideoId("https://www.youtube.com/watch?v=2V1fYJntoFA");
        // console.log("YOUTUBE API is "+https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y);
-        myList=[{duration:"", sources: [{
+        myList=[{duration:42, sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
         }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/hqdefault.jpg"}]}];

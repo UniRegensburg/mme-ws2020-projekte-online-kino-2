@@ -7,34 +7,14 @@
 // /* eslint-disable vars-on-top /
 // / eslint-disable no-unused-vars */
 
-// var linkArray;
-
-// class GenerateRoom {
-//     constructor(){
-//         linkArray=["app, roomOne, roomTwo"];
-//     }
-
-//     static getLinkArray(){
-//         return linkArray;
-//     }
-// }
+//import AppClient from "../js/AppClient";
 
 // export default new GenerateRoom();
 
 //ALTER CODE GENARATE ROOM
 const link = "http://localhost:5500/";
 var newField, 
-roomId, roomLinks=[];
-
-function createRandomSymbols(){
-    console.log("createRandomLink");
-    newField.style.visibility="visible";
-    roomId = Math.random().toString(36).substr(2, 12);
-    console.log("ID" + roomId);
-    roomLinks.push(roomId);
-    console.log("roomLinks "+roomLinks);
-    newField.innerHTML = link+roomId;
-}
+roomId, roomLinks=[], appClientHere, createRoomLinkButton, linkEnteringField;
 
 function CopyToClipboard(containerid) {
   /*  if (document.selection) {
@@ -52,13 +32,66 @@ function CopyToClipboard(containerid) {
   }
 
 class GenerateRoom {
-    constructor(){
-        var createRoomLinkButton=document.querySelector(".cta");
+    constructor(appClient){
+        appClientHere=appClient;
+        createRoomLinkButton=document.querySelector(".cta");
         newField=document.querySelector(".createdLink");
+        document.querySelector(".startscreen-bereich").style.display="block";
+        document.querySelector(".index-bereich").style.display="none";
+
+
+        console.log("wir sind in generate room");
+        linkEnteringField=document.querySelector(".linkEnteringField");
+        linkEnteringField.addEventListener("keypress", this.showRoom.bind(appClientHere));
         // var copyTextButton=document.querySelector(".copy-text");
         // copyTextButton.addEventListener("click", copyToClipboard);
         //newField.value="";
-        createRoomLinkButton.addEventListener("click", createRandomSymbols);
+        appClientHere.roomLinkCreating();
+       // newField.addEventListener("click", this.showRoom);
+       
+        createRoomLinkButton.addEventListener("click", this.onCreateRandomLinkClicked.bind(appClientHere));
+        appClientHere.addEventListener("roomlink correct", this.proveLink );
+
+        appClientHere.addEventListener("created room link", this.showCreatedLink);
+    }
+
+    showCreatedLink(ev){
+      console.log("von server created link is "+ev.data);
+      newField.style.visibility="visible";
+      newField.innerHTML = ev.data;
+    }
+
+    onCreateRandomLinkClicked(){
+      appClientHere.sendCreateRandomRoomLink();
+    }
+
+    showRoom(ev) {
+      console.log("wir aendern html "+ev.target);
+
+      if(ev.keyCode===13){
+        console.log("wir aendern html und value linkEnteringField.innerHTML is "+linkEnteringField.value);
+        appClientHere.enteringRoom(linkEnteringField.value);
+
+      }
+
+    }
+
+    proveLink(ev){
+      console.log("proving link "+ev.data);
+      if(ev.data===true){
+        console.log("proving link TRUE ");
+
+        document.querySelector(".index-bereich").style.display="block";
+        document.querySelector(".startscreen-bereich").style.display="none";
+      
+      }
+      else{
+        console.log("proving link FALSE ");
+
+        document.querySelector(".index-bereich").style.display="none";
+        document.querySelector(".startscreen-bereich").style.display="none";
+        alert("Der eingetragene link ist falsch");
+      }
     }
 
     static getRoomLinksArray(){

@@ -6,14 +6,17 @@
 import MessageChatField from "./user_interface/MessageChatField.js";
 import VideoControl from "./user_interface/VideoControl.js";
 import AppClient from "../js/AppClient.js";
+import GenerateRoom from "../startscreen_rep/GenerateRoom.js";
 
 // eslint-disable-next-line no-undef
 var messageChatField,
-videoControl, appClient;
+videoControl, appClient, generateRoomObj;
 
 function init() {
    // changeVideoUrl();
     appClient=new AppClient();
+    generateRoomObj=new GenerateRoom(appClient);
+    console.log("generateRoomObj! "+generateRoomObj);
     messageChatField=new MessageChatField(appClient);
     videoControl=new VideoControl(appClient);
   }

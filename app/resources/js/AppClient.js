@@ -16,10 +16,30 @@ class AppClient extends Observable {
         console.log("windowlocation "+windowLocation);
         // eslint-disable-next-line no-undef
         ws = io.connect();
-        ws.emit("roomId", windowLocation);
+        console.log("appclient created!");
+        //ws.emit("entering room", windowLocation);
 
     }
 
+    roomLinkCreating(){
+      ws.on("created room link", (roomLink)=>{
+        console.log("created room link "+roomLink);
+        this.notifyAll(new Event("created room link", roomLink));
+      });
+
+      ws.on("roomlink correct", (correctOrNot)=>{
+        console.log("correctOrNot!!! "+correctOrNot.ifCorrect);
+        this.notifyAll(new Event("roomlink correct", correctOrNot.ifCorrect));
+
+      });
+    }
+
+    enteringRoom(roomLinkValue){
+      console.log("entering room roomLinkValue "+ roomLinkValue);
+      ws.emit("entering room", roomLinkValue);
+    }
+
+    //TEXT CHAT
     connectForChatting() {
         ws.on("new message", (data)=>{
             this.notifyAll(new Event("new message", data));
@@ -31,6 +51,7 @@ class AppClient extends Observable {
         ws.emit("send message", {userName: userName, message: message});
     }
 
+    //VIDEOSTEUERUNG
     connectForVideoControlling(){
         ws.on("just play", (data)=>{
             console.log("videoEl event receivedTime: " + data+data.videoTime);
@@ -57,6 +78,12 @@ class AppClient extends Observable {
             this.notifyAll(new Event("altered list", json));
             console.log("JSON.parse(myList) REVIVED "+json);
         });
+    }
+
+    //EMITTING EVENTS 
+    sendCreateRandomRoomLink(){
+      console.log("wir senden ein request auf creating room link");
+      ws.emit("creating room link");
     }
 
     sendSynchronizedInfo(time, currentSrc){

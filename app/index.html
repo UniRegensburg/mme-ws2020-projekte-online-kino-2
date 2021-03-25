@@ -17,12 +17,46 @@
 </head>
 
 <body>
+    <div class="startscreen-bereich">
+        <section id="hero">
+            <div class="logo-img">
+                <img src="../img/logo-img.jpeg" alt="Cinema4usLogo">
+            </div>
+            <div class="hero container">
+         
+              <div>
+                <h1>Willkommen <span></span></h1>
+                <h1>bei <span></span></h1>
+                <h1>Cinema4us<span></span></h1>
+                <div type="button" class="cta">Raum erstellen</div>
+                
+              </div>
+              <div class="createdLink"></div>
+              <input type="text" class="linkEnteringField" placeholder="Enter room number" maxlength="30">
+
+            </div>
+          </section>
+          <!-- End Hero Section  -->
+          <!-- Footer -->
+          <section id="footer">
+            <div class="footer container">
+        
+        
+              <p>Copyright © 2021 Cinema4us. All rights reserved</p>
+            </div>
+          </section>
+    </div>
+
+    <div class="index-bereich">
     <header>
         <div class ="row">
         <img id = "logo" src = .\resources\img\logo-img.jpeg height="100px"> </img>
         </div>    
     </header>
     <main>
+        <div class="video-audio-chat-container">
+            <video class="self-video" playsinline muted controls autoplay="autoplay"></video>
+        </div>
         <div class="navigation-row">
             <div class="url-entering">
                 <input type="url" id="urlInput" placeholder="Enter YouTube-URL here" maxlength="60">
@@ -54,6 +88,7 @@
                     <input class = "shuffleButton" type="button" value="Shuffle">
                     <input class = "sortButton" type="button" value="Duration Ascending">
                     <input class = "reverseButton" type="button" value="Reverse">
+                    <input class = "audioButton" type="button" value="Audio">
 
 
                 </div>
@@ -69,12 +104,12 @@
                         <textarea placeholder="Write a message ..." class="message" name="message" cols="80" rows="5"></textarea>
                         <input type="button" value="Send">
                     </div>
+                     </div>
                 </div>
-                </div>
-            </div>
         </div>
+        
     </main>
-
+    </div>
     <template id="message-template">
     <span class="message">
         <span class="user-name">{{socketId}}</span>
@@ -101,12 +136,11 @@
     <script type = "module" src="/libs/get-video-id/get-video-id.js"></script>
     <!-- Client-Code in client-setiger index.js -->
     <script type = "module" src="../app/resources/js/index.js"></script> 
-    <script type = "module" src="../app/resources/startscreen_rep/startscreen.js"></script> 
 
     <script type= "application/javascript" src= "/libs/socketio/socket.io.min.js"></script>
     <script type="application/javascript" src="/libs/typeson/typeson.js"></script>
     <script type="application/javascript" src="/libs/typeson/typeson.min.js"></script>
-
+    <script type="javascript/application" src="/libs/get-video-duration/index.js"></script>
     <script type="appliction/javascript" src="/libs/typeson-registry/builtin.js"></script>
     <script type="appliction/javascript" src="/libs/typeson-registry/socketio.js"></script>
 
