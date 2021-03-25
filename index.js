@@ -2,7 +2,7 @@
 import AppServer from "./server/AppServer.js";
 import Discord from "discord.js";
 var appServer;
-const BOT_TOKEN="ODI0NTYwNjQ3NTM0MjgwNzI0.YFxJ8Q.KKgL88rdHBeVU6qmEkvlPCkWB88";
+//const BOT_TOKEN="ODI0NTYwNjQ3NTM0MjgwNzI0.YFxJ8Q.KKgL88rdHBeVU6qmEkvlPCkWB88";
 
 function init() {
     appServer = new AppServer("app", "libs", "utils", 5500);
@@ -11,7 +11,7 @@ function init() {
     console.log("Hallo, hier bin ich");
     appServer.start(5500);
 
-    const client =new Discord.Client();
+    /*const client =new Discord.Client();
     
     /*client.on('ready', () => {
         // List servers the bot is connected to
@@ -26,8 +26,8 @@ function init() {
         })
     })
 */
-    client.on('message', async message => {
-        if (!message.guild) return;
+    /*client.on('message', async message => {
+        /*if (!message.guild) return;
         if (message.content === 'join') {
         // Only try to join the sender's voice channel if they are in one themselves
         if (message.member.voice.channel) {
@@ -58,7 +58,7 @@ function init() {
             console.error(e);
         });
     });*/
-    client.login(BOT_TOKEN);
+    /*client.login(BOT_TOKEN);
+}*/
 }
-
 init();

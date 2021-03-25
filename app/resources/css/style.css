@@ -33,6 +33,65 @@ html::after {
 body div {
     padding: 1vw;
 }
+#playButton{
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+}
+#playButton:hover {
+	color: #d0dcde;
+	background-color: #0e3545;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+}
+#pauseButton{
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+}
+#pauseButton:hover {
+	color: #d0dcde;
+	background-color: #0e3545;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+}
+#syncButton{
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+}
+#syncButton:hover {
+	color: #d0dcde;
+	background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+}
+#shuffleButton{
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+}
+#shuffleButton:hover {
+	color: #d0dcde;
+	background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+}
+#sortButton{
+    font-size: 15px;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+}
+#sortButton:hover {
+	color: #d0dcde;
+	background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+}
+#reverseButton{
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+}
+#reverseButton:hover {
+	color: #d0dcde;
+	background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+}
 
 #urlInput {
     display: inline-block;
@@ -49,6 +108,7 @@ body div {
 	margin-top: 10px;
 	transition: .3s ease;
 	transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
 
 }
 #submitButton{
@@ -65,6 +125,7 @@ body div {
 	margin-top: 10px;
 	transition: .3s ease;
 	transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
 
 }
 #submitButton:hover {
@@ -96,7 +157,21 @@ body div {
     font-size: 1rem;
     border-radius: 2%;
     border: 1px solid #d0dcde;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.2)
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.2);
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+    overflow: auto;
+}
+span.chattext{
+    font-size: 30px;
+    color: white;
+    
+    
+}
+#chatlogo{
+    height: 10%;
+    border-radius: 50%;
+    -webkit-box-shadow: 2px 2px 15px -3px #000000; 
+    box-shadow: 2px 2px 15px -3px #000000;
     
 }
 
@@ -234,16 +309,40 @@ body {
     flex-direction: column;
     min-height: 50vh;
     flex-grow: 1;
-    background-color: var(--grey);
+    overflow: auto;
     /*overflow-y: scroll;*/
+}
+span.savedUserName{
+    text-shadow: -2px -1px 2px rgba(99, 181, 201, 0.1);
+    color: #7492a4;
+    text-align: end;
+}
+span.timestamp{
+    font-size: small;
+    color: gray;
+    text-align: end;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+
 }
 
 .board .message {
     display: flex;
     flex-direction: column;
-    padding: 2vh 20vw;
-    background-color: var(--background-light);
-    color: var(--font);
+    /*padding: 1vh 8vw;*/
+    padding-left: 13px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 13px;
+    
+    background-color: rgba(255,255,255,0.1);
+    background-clip: padding-box;
+    box-shadow: 10px 10px 10px rgba(45, 55, 68, 0.30);
+    border: 2px solid transparent;
+    
+    color: white;
+    width: 200px;
+    align-self: flex-end;
+    margin: 3px 3px;
 }
 
 .board .message .user-name {
@@ -252,6 +351,12 @@ body {
     border-color: var(--font);
     margin-bottom: 1vh;
     padding-bottom: 1vh;
+}
+.message{
+    border-radius: 18%;
+    /*border: 1px solid #d0dcde;
+    margin-right: 5px;*/
+    
 }
 
 
@@ -288,10 +393,27 @@ body {
     -moz-box-shadow: none;
     box-shadow: none;
     resize: none; */
-    background-color: var(--viridian);
+    background-color: black;
     font-family: 'Work Sans', sans-serif;
     color: white;
+    text-align: start;
     font-size: 1em;
+}
+textarea{
+    color: white;
+    text-align: left;
+    background-color: transparent;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1em;
+    margin-top: 20px;
+    border: 1px solid #D8D8D8;
+    
+    
+    
+}
+textarea::placeholder{
+    color: #7492a4;
+    
 }
 
 .editor input[type="button"] {
@@ -308,9 +430,10 @@ body {
 	font-size: 1rem;
 	text-transform: uppercase;
 	letter-spacing: .1rem;
-	margin-top: 170px;
+	margin-top: 15px;
 	transition: .3s ease;
 	transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
 }
 
 .editor input[type="button"]:hover {
@@ -392,6 +515,35 @@ body {
 }
 
 @media(max-width: 500px){
+    #playButton{
+        font-size: 10px;
+        
+    }
+   
+    #pauseButton{
+        font-size: 10px;
+        
+    }
+    
+    #syncButton{
+        font-size: 10px;
+        
+    }
+    
+    #shuffleButton{
+        font-size: 10px;
+        
+    }
+    
+    #sortButton{
+        font-size: 10px;
+        
+    }
+    
+    #reverseButton{
+        font-size: 10px;
+        
+    }
     #my-player{
         flex: 100%;
         
@@ -402,9 +554,13 @@ body {
         
         
     } 
+    span.chattext{
+        font-size: 20px;
+        
+    }
     .chat-place {
         flex: 100%;
-        width: 50%;
+        width: 90%;
         height: 300px;
         margin-left: 3%;
         margin-right: 5%;
@@ -462,6 +618,8 @@ body {
 
     #logo{
         border-radius: 50%;
+        -webkit-box-shadow: 2px 2px 15px -3px #000000; 
+    box-shadow: 2px 2px 15px -3px #000000;
     }
 
 
@@ -517,6 +675,7 @@ body {
 
 
 .startscreen-bereich * {
+    
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
@@ -562,13 +721,14 @@ body {
 	color: #d0dcde;
 }
 
-.startscreen-bereich .cta {
+.startscreen-bereich .hero .cta {
+    
 	display: inline-block;
-	padding: 10px 30px;
+	padding: 20px 60px;
 	color: white;
 	background-color: transparent;
 	border: 2px solid #d0dcde;
-	font-size: 2rem;
+	font-size: 1.3rem;
 	text-transform: uppercase;
 	letter-spacing: .1rem;
 	margin-top: 30px;
@@ -601,14 +761,7 @@ body {
 
 
 /* Hero Section */
-.startscreen-bereich #hero {
-	/*background-image: url(\app\resources\img\background_img.jpg);*/
-    background-image: url(/app/resources/img/background_img.jpg);
-	background-size: cover;
-	background-position: top center;
-	position: relative;
-	z-index: 1;
-}
+/*
 .startscreen-bereich #hero::after {
 	content: '';
 	position: absolute;
@@ -625,11 +778,11 @@ body {
 	margin: 0 auto;
 	padding: 0 50px;
 	justify-content: center;
-}
-.startscreen-bereich #hero h1 {
+}*/
+.startscreen-bereich #hero .hero h1 {
 	display: block;
 	width: fit-content;
-	font-size: 4rem;
+	font-size: 4.3rem;
 	position: relative;
 	color: transparent;
 	animation: text_reveal .5s ease forwards;
@@ -641,11 +794,11 @@ body {
 .startscreen-bereich #hero h1:nth-child(2) {
 	animation-delay: 2s;
 }
-.startscreen-bereich #hero h1:nth-child(3) {
+.startscreen-bereich #hero .hero h1:nth-child(3) {
 	animation: text_reveal_name .5s ease forwards;
 	animation-delay: 3s;
 }
-.startscreen-bereich #hero h1 span {
+.startscreen-bereich #hero .hero h1 span {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -668,31 +821,7 @@ body {
 /* End Hero Section */
 
 
-/* Footer */
-.startscreen-bereich #footer {
-	background-image: linear-gradient( #0e3545 0%, #485563 100%);
-    
-}
-.startscreen-bereich #footer .footer {
-	min-height: 50px;
-	flex-direction: column;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-.startscreen-bereich #footer h2 {
-	color: #d0dcde;
-	font-weight: 500;
-	font-size: 1.8rem;
-	letter-spacing: .1rem;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
 
-.startscreen-bereich #footer p {
-	color: #d0dcde;
-	font-size: 1.3rem;
-}
-/* End Footer */
 
 /* Keyframes */
 @keyframes hamburger_puls {
@@ -816,7 +945,10 @@ body {
 	font-size: large;
 } */
 
+
+
 .startscreen-bereich #hero .createdLink {
+    
 	align-items: center;
 	justify-content: center;
 	display: inline;
@@ -831,7 +963,7 @@ body {
 	transition: .3s ease;
 	transition-property: background-color, color;
 }
-.startscreen-bereich button {
+.startscreen-bereich .hero button {
 	display: inline-block;
 	padding: 10px 30px;
 	color: white;
@@ -849,6 +981,24 @@ body {
 .startscreen-bereich .genLink{
 	align-content: center;
 	padding-left: 25%;
+}
+.startscreen-bereich .hero .linkEnteringField{
+    display: inline-block;
+	padding: 10px 10px;
+    width: 250px;
+    margin-right: 5%;
+	color: white;
+	background-color: #918784;
+	border: 2px solid #d0dcde;
+    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+	font-size: 1.rem;
+	text-transform: uppercase;
+	letter-spacing: .1rem;
+	margin-top: 10px;
+	transition: .3s ease;
+	transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+    text-align: center;
 }
 
 

@@ -8,6 +8,8 @@
     <title>Cinema4Us</title>
     <link rel="preconnect" href="https://fonts.gstatic.com/%22%3E">
     <link type="text/css" href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
     <!-- Client-CSS für Video.js laden -->
     <link type="text/css" rel="stylesheet" href="/libs/video-js/video-js.min.css">
     <link type="text/css" rel="stylesheet" href="/libs/video-js/video-js.css">
@@ -22,7 +24,7 @@
     <div class="startscreen-bereich">
         <section id="hero">
             <div class="logo-img">
-                <img src="../img/logo-img.jpeg" alt="Cinema4usLogo">
+                <img id = "logo" src = .\resources\img\logo-img.jpeg height="100px"> </img>
             </div>
             <div class="hero container">
          
@@ -34,17 +36,12 @@
                 
               </div>
               <div class="createdLink"></div>
-              <input type="text" class="linkEnteringField" placeholder="Enter room number" maxlength="30">
+              <input type="text" class="linkEnteringField" placeholder="Raumnummer eingeben" maxlength="30">
 
             </div>
           </section>
           <!-- End Hero Section  -->
-          <!-- Footer -->
-          <section id="footer">
-            <div class="footer container">        
-              <p>Copyright © 2021 Cinema4us. All rights reserved</p>
-            </div>
-          </section>
+          
     </div>
 
     <div class="index-bereich">
@@ -54,12 +51,12 @@
         </div>    
     </header>
     <main>
-        <div class="video-audio-chat-container">
+        <!--<div class="video-audio-chat-container">
             <video class="self-video" playsinline muted controls autoplay="autoplay"></video>
-        </div>
+        </div><!-->
         <div class="navigation-row">
             <div class="url-entering">
-                <input type="url" id="urlInput" placeholder="EYouTube-URL eingeben" maxlength="60">
+                <input type="url" id="urlInput" placeholder="YouTube-URL eingeben" maxlength="60">
                 <input type="submit" id="submitButton" value="Hinzufügen">
             </div>
             <div class="frames-box">
@@ -101,7 +98,8 @@
             </div>
             <div class="chat-place">
                 <!-- <div class="chat tab"> -->
-                    <span>Chat</span>
+                    <img id = "chatlogo" src = .\resources\img\logo_without_text.jpeg> </img>
+                    <span class="chattext">Chat</span>
                      <div class="board"> 
                         
                     
@@ -120,9 +118,10 @@
     <template id="message-template">
     <span class="message">
         <!-- <span class="user-name">{{socketId}}</span> -->
+        <span class="savedUserName">{{}}</span>
         <span class="text">{{text}}</span>
         <span class="timestamp">{{timestamp}}</span>
-        <span class="savedUserName">{{}}</span>
+        
 
     </span>
     </template>
