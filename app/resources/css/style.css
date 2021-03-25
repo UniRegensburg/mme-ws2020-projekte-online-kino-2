@@ -1,3 +1,4 @@
+/*index.css*/
 html {
     font-family: 'Work Sans', sans-serif;
     background-image: url(/app/resources/img/background_img.jpg);
@@ -335,9 +336,7 @@ body {
         height: 70px;
     }
     .editor input[type="button"] {
-        
         margin-top: 130px;
-        
     }
     
 }
@@ -484,11 +483,28 @@ body {
         margin-bottom: 3%;
 
     }
+    .controls button{
+        display: inline-block;
+        padding: 10px 15px;
+        color: white;
+        background-color: transparent;
+        border: 2px solid #d0dcde;
+        border-radius: 7%;
+        box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+        margin-top: 10px;
+        margin-left: 1.5%;
+        transition: .3s ease;
+        transition-property: background-color, color;
+        margin-bottom: 3%;
+    }
+
     .controls input:hover {
         color: #d0dcde;
         background-color: #7492a4;
     }
-
 
     .index-bereich{
      
@@ -834,6 +850,9 @@ body {
 	align-content: center;
 	padding-left: 25%;
 }
+
+
+
 
 
 

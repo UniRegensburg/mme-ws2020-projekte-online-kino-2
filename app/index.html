@@ -13,6 +13,8 @@
     <link type="text/css" rel="stylesheet" href="/libs/video-js/video-js.css">
     <link type="text/css" rel="stylesheet" href="/libs/videojs-playlist-ui/videojs-playlist-ui.css">
     <link type="text/css" rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -39,9 +41,7 @@
           <!-- End Hero Section  -->
           <!-- Footer -->
           <section id="footer">
-            <div class="footer container">
-        
-        
+            <div class="footer container">        
               <p>Copyright © 2021 Cinema4us. All rights reserved</p>
             </div>
           </section>
@@ -59,8 +59,8 @@
         </div>
         <div class="navigation-row">
             <div class="url-entering">
-                <input type="url" id="urlInput" placeholder="Enter YouTube-URL here" maxlength="60">
-                <input type="submit" id="submitButton" value="Bestätigen">
+                <input type="url" id="urlInput" placeholder="EYouTube-URL eingeben" maxlength="60">
+                <input type="submit" id="submitButton" value="Hinzufügen">
             </div>
             <div class="frames-box">
                 <!--<ul class="frames">
@@ -82,13 +82,19 @@
                 data-setup='{ "preload": true, "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "", "autoplay": false}], "youtube": { "ytControls": 2 } }'>
                 </video>
                 <div class = "controls">
-                    <input class = "playButton" type="button" value="Play">
+                    <!-- <input class = "playButton" type="button" value="Play">
                     <input class = "pauseButton" type="button" value="Pause">
                     <input class = "syncButton" type="button" value="Sync">
                     <input class = "shuffleButton" type="button" value="Shuffle">
                     <input class = "sortButton" type="button" value="Duration Ascending">
                     <input class = "reverseButton" type="button" value="Reverse">
-                    <input class = "audioButton" type="button" value="Audio">
+                    <input class = "audioButton" type="button" value="Audio"> -->
+                    <button id = "playButton"><i class="fa fa-play"></i></button>
+                    <button id = "pauseButton"><i class="fa fa-pause"></i></button>
+                    <button id = "syncButton">Sync <i class="fa fa-refresh"></i></button>
+                    <button id = "shuffleButton">Shuffle <i class="fa fa-random"></i></button>
+                    <button id = "sortButton">Duration <i class="fa fa-sort-desc"></i></button>
+                    <button id = "reverseButton">Reverse <i class="fa fa-undo"></i></button>
 
 
                 </div>
@@ -100,9 +106,9 @@
                         
                     
                     <div class="editor">
-                        <input type="text" name="username-input" placeholder="Enter your name">
-                        <textarea placeholder="Write a message ..." class="message" name="message" cols="80" rows="5"></textarea>
-                        <input type="button" value="Send">
+                        <!-- <input type="text" name="username-input" placeholder="Enter your name"> -->
+                        <textarea placeholder="Schreibe hier deine Nachricht"></textarea>
+                        <input type="button" value="Senden">
                     </div>
                      </div>
                 </div>
@@ -110,9 +116,10 @@
         
     </main>
     </div>
+   
     <template id="message-template">
     <span class="message">
-        <span class="user-name">{{socketId}}</span>
+        <!-- <span class="user-name">{{socketId}}</span> -->
         <span class="text">{{text}}</span>
         <span class="timestamp">{{timestamp}}</span>
         <span class="savedUserName">{{}}</span>

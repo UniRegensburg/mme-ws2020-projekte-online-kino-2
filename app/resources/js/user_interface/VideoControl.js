@@ -19,13 +19,13 @@ class VideoControl extends Observable{
     constructor(appClient){
         super();
         appClientHere=appClient;
-        playButton=document.querySelector(".playButton");
-        pauseButton=document.querySelector(".pauseButton");
-        syncButton=document.querySelector(".syncButton");
-        shuffleButton=document.querySelector(".shuffleButton");
-        reverseButton=document.querySelector(".reverseButton");
+        playButton=document.querySelector("#playButton");
+        pauseButton=document.querySelector("#pauseButton");
+        syncButton=document.querySelector("#syncButton");
+        shuffleButton=document.querySelector("#shuffleButton");
+        reverseButton=document.querySelector("#reverseButton");
         framesBox=document.querySelector(".frames-box");
-        sortButton=document.querySelector(".sortButton");
+        sortButton=document.querySelector("#sortButton");
         submitButton=document.querySelector("#submitButton");
         urlInputField=document.querySelector("#urlInput");
         // eslint-disable-next-line no-undef
@@ -43,7 +43,7 @@ class VideoControl extends Observable{
         console.log("promise "+promise);
       //  var id = getVideoId("https://www.youtube.com/watch?v=2V1fYJntoFA");
        // console.log("YOUTUBE API is "+https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y);
-        myList=[{duration:42, sources: [{
+        myList=[{name: "how to bathe your shibe" ,description: "",duration: 42, sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
         }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/hqdefault.jpg"}]}];
@@ -96,11 +96,53 @@ class VideoControl extends Observable{
 //YUOTUBE
 //https://www.youtube.com/watch?v=C3lWwBslWqg sting desert rose
 //https://www.youtube.com/watch?v=EgmXTmj62ic tamally maak
+    processdata(data) {
+        let hon = JSON.stringify(data);
+        console.log(hon);
+    }
 
     addNewVideoToPlayList(ev){
-        console.log("HERE NEW SRC "+ev.data);
-        var { id } = getVideoId(`${ev.data}`);
-        myList.push({ duration: "",sources: [{
+    console.log("HERE NEW SRC "+ev.data);
+    var { id } = getVideoId(`${ev.data}`);
+    var videoDuration;
+    fetch (`https://www.googleapis.com/youtube/v3/videos?id=${id}&part=contentDetails&fileDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y`).then(response => response.json()).then(
+    data => {
+    let jsonResponse = JSON.stringify(data);
+    let jsonVideoInformation = JSON.parse(jsonResponse);
+    videoDuration = jsonVideoInformation.items[0].contentDetails.duration;
+    console.log(jsonVideoInformation.items[0].contentDetails.duration);
+    
+    var timeDuration = videoDuration.match(/\d+/g);
+     
+    //function taken from https://stackoverflow.com/questions/22148885/converting-youtube-data-api-v3-video-duration-format-to-seconds-in-javascript-no
+    
+    if (videoDuration.indexOf('M') >= 0 && videoDuration.indexOf('H') === -1 && videoDuration.indexOf('S') === -1) {
+        timeDuration = [0, timeDuration[0], 0];
+    }
+
+    if (videoDuration.indexOf('H') >= 0 && videoDuration.indexOf('M') === -1) {
+        timeDuration = [timeDuration[0], 0, timeDuration[1]];
+    }
+    if (videoDuration.indexOf('H') >= 0 && videoDuration.indexOf('M') === -1 && videoDuration.indexOf('S') === -1) {
+        timeDuration = [timeDuration[0], 0, 0];
+    }
+    
+    var trueDuration = 0;
+
+    if(timeDuration.length === 3) {
+        trueDuration = trueDuration + parseInt(timeDuration[0]) * 3600;
+        trueDuration = trueDuration + parseInt(timeDuration[1]) * 60;
+        trueDuration = trueDuration + parseInt(timeDuration[2]);
+    }
+    if(timeDuration.length === 2) {
+        trueDuration = trueDuration + parseInt(timeDuration[0]) * 60;
+        trueDuration = trueDuration + parseInt(timeDuration[1]);
+    }
+    if(timeDuration.length === 1) {
+        trueDuration = trueDuration + parseInt(timeDuration[0]);
+    }
+
+    myList.push({duration: trueDuration, sources: [{
             src: `${ev.data}`,
             type: 'video/youtube',
         }], thumbnail:[{
@@ -109,9 +151,11 @@ class VideoControl extends Observable{
         videoEl.playlist(myList);
         videoEl.playlistUi({className: "frames-box" , horizontal:true , playlistPicker:false});
         urlInputField.value="";
-        }
+        console.log(myList);
+    });
+    }
 
-    onPlayButtonClicked(){
+    onPlayButtonClicked() {
         console.log("playButton gedrueckt um die Zeit "+videoEl.currentTime());
         appClientHere.sendVideoStarting(videoEl.currentTime());  
     }
@@ -120,13 +164,13 @@ class VideoControl extends Observable{
         appClientHere.sendVideoStopping(videoEl.currentTime());
     }
 
-    onSortButtonClicked(){
-       // videoEl.playlist.sort(function(a, b){
-         //   return a.duration-b.duration;
-        //});
-        videoEl.playlist.sort();
-        appClientHere.sendAlteredList(videoEl.playlist());
+    compare(a,b) {
+        return a-b;
+    }
 
+    onSortButtonClicked(){
+        myList.sort((a,b) => b.duration-a.duration);
+        appClientHere.sendAlteredList(myList);
     }
 
     onReverseButtonClicked(){
@@ -162,7 +206,7 @@ class VideoControl extends Observable{
        // console.log("sources "+JSON.parse(ev.data)+" JSON.parse(ev.data) length "+JSON.parse(ev.data).length);
         var parsedData=JSON.parse(ev.data);
             for(var i=0; i<parsedData.length; i++){
-                    newMyList.push({ duration: "", sources: [{
+                    newMyList.push({duration: parsedData[i].duration,sources: [{
                     src: parsedData[i].sources[0].src,
                     type: 'video/youtube',
                 }], thumbnail:[{

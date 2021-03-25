@@ -91,7 +91,7 @@ class AppServer {
     start(port) {
         console.log("wir sind in start-Methode von AppServer");
         console.log(
-          `AppServer started! Client available at http://localhost:${port}`
+          `AppServer started! Client available at http://localhost:${port}/app`
         );
         io = new SocketIO.Server(server);
         console.log("io hier" + io);
@@ -135,7 +135,7 @@ class AppServer {
             socket.on("send message", (data)=> { //Server erwartet von irgendwelchem Client das event "send message"
               console.log("data socket on is "+data + data.userName +data.message);
               io.sockets.in(socket.given_room).emit("new message", { 
-                  userName: data.userName, 
+                  // userName: data.userName, 
                   savedUserName: socket.username,
                   timeStamp: Date.now(),
                   message: data.message});                

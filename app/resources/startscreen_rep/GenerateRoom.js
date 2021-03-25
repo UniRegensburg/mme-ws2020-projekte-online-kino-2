@@ -90,6 +90,7 @@ class GenerateRoom {
 
         document.querySelector(".index-bereich").style.display="none";
         document.querySelector(".startscreen-bereich").style.display="none";
+        //
         alert("Der eingetragene link ist falsch");
       }
     }

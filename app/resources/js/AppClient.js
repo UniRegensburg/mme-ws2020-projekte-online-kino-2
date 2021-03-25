@@ -46,9 +46,10 @@ class AppClient extends Observable {
         });
     }
 
-    sendMessage(userName, message) {
-        console.log("userName is "+userName+" message is "+message);
-        ws.emit("send message", {userName: userName, message: message});
+    sendMessage(message) {
+        // console.log("userName is "+userName+" message is "+message);
+        // ws.emit("send message", {userName: userName, message: message});
+        ws.emit("send message", {message: message});
     }
 
     //VIDEOSTEUERUNG

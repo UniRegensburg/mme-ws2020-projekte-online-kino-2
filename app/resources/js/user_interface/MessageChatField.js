@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 
 const MESSAGE_TEMPLATE = document.querySelector("#message-template").innerHTML.trim();
-var boardEl, messageEl, sendMessageButton, userNameEl, appClientHere;
+var boardEl, messageEl, sendMessageButton, appClientHere;
 
 function addMessageToBoard(message, boardEl) {
     let dateD = new Date();    
@@ -14,7 +14,7 @@ function addMessageToBoard(message, boardEl) {
     tmpElement.innerHTML = MESSAGE_TEMPLATE;
     messageElement = tmpElement.firstChild;
     messageElement.querySelector(".timestamp").innerHTML = date;
-    messageElement.querySelector(".user-name").innerHTML = message.userName;
+    // messageElement.querySelector(".user-name").innerHTML = message.userName;
     messageElement.querySelector(".text").innerHTML = message.message;
     messageElement.querySelector(".savedUserName").innerHTML=message.savedUserName;
     boardEl.insertBefore(messageElement, boardEl.firstChild);
@@ -28,7 +28,7 @@ class MessageChatField {
         appClientHere=appClient;
         boardEl=document.querySelector(".board");
         sendMessageButton = document.querySelector(".editor input[type=\"button\"]");
-        userNameEl = document.querySelector(".editor input[type=\"text\"]");
+        // userNameEl = document.querySelector(".editor input[type=\"text\"]");
         messageEl = document.querySelector(".editor textarea");
         appClientHere.connectForChatting();
         sendMessageButton.addEventListener("click", this.onMessageSend.bind(appClientHere));
@@ -41,13 +41,13 @@ class MessageChatField {
     }
 
     onMessageSend() {
-        if (userNameEl.value === "" || messageEl.value === "") {
-            alert("Bitte Name und Text eingeben!");
+        if (messageEl.value === "") {
+            alert("Bitte Text eingeben!");
             return;
         }
-        appClientHere.sendMessage(userNameEl.value, messageEl.value);
+        appClientHere.sendMessage(messageEl.value);
         messageEl.value = "";
-        userNameEl.value="";
+        // userNameEl.value="";
     }
 }
 
