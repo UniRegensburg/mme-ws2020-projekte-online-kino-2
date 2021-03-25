@@ -46,7 +46,7 @@ class VideoControl extends Observable{
         myList=[{name: "how to bathe your shibe" ,description: "",duration: 42, sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
-        }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/hqdefault.jpg"}]}];
+        }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/mqdefault.jpg"}]}];
 
         appClientHere.connectForVideoControlling();
         submitButton.addEventListener("click", this.addVideoToPlayList);
@@ -64,7 +64,7 @@ class VideoControl extends Observable{
         appClientHere.addEventListener("altered list", this.alterListForAll);
         
         videoEl.playlist(myList);
-        videoEl.playlistUi({className: "frames-box" , horizontal:true, playlistPicker:false});
+        videoEl.playlistUi({horizontal:true, playlistPicker:true, showDescription:true});
         videoEl.playlist.autoadvance(0); //play through the playlist automatically
     }
 
@@ -105,11 +105,12 @@ class VideoControl extends Observable{
     console.log("HERE NEW SRC "+ev.data);
     var { id } = getVideoId(`${ev.data}`);
     var videoDuration;
-    fetch (`https://www.googleapis.com/youtube/v3/videos?id=${id}&part=contentDetails&fileDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y`).then(response => response.json()).then(
+    fetch (`https://www.googleapis.com/youtube/v3/videos?id=${id}&part=snippet&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y`).then(response => response.json()).then(
     data => {
     let jsonResponse = JSON.stringify(data);
     let jsonVideoInformation = JSON.parse(jsonResponse);
     videoDuration = jsonVideoInformation.items[0].contentDetails.duration;
+    let videoName =jsonVideoInformation.items[0].snippet.title;
     console.log(jsonVideoInformation.items[0].contentDetails.duration);
     
     var timeDuration = videoDuration.match(/\d+/g);
@@ -142,14 +143,14 @@ class VideoControl extends Observable{
         trueDuration = trueDuration + parseInt(timeDuration[0]);
     }
 
-    myList.push({duration: trueDuration, sources: [{
+    myList.push({name:videoName ,duration: trueDuration, sources: [{
             src: `${ev.data}`,
             type: 'video/youtube',
         }], thumbnail:[{
-          src: `http://img.youtube.com/vi/${id}/hqdefault.jpg`,
+          src: `http://img.youtube.com/vi/${id}/mqdefault.jpg`,
         }]});
         videoEl.playlist(myList);
-        videoEl.playlistUi({className: "frames-box" , horizontal:true , playlistPicker:false});
+        videoEl.playlistUi({horizontal:true , playlistPicker:true, showDescription:false});
         urlInputField.value="";
         console.log(myList);
     });
@@ -206,7 +207,7 @@ class VideoControl extends Observable{
        // console.log("sources "+JSON.parse(ev.data)+" JSON.parse(ev.data) length "+JSON.parse(ev.data).length);
         var parsedData=JSON.parse(ev.data);
             for(var i=0; i<parsedData.length; i++){
-                    newMyList.push({duration: parsedData[i].duration,sources: [{
+                    newMyList.push({name: parsedData[i].name, duration: parsedData[i].duration,sources: [{
                     src: parsedData[i].sources[0].src,
                     type: 'video/youtube',
                 }], thumbnail:[{
@@ -214,7 +215,7 @@ class VideoControl extends Observable{
                 }]});
             }
         videoEl.playlist(newMyList);
-        videoEl.playlistUi({className: "frames-box" , horizontal:true, playlistPicker:false});
+        videoEl.playlistUi({horizontal:true, playlistPicker:true, showDescription:false});
     }
 
 }

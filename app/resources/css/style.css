@@ -205,7 +205,7 @@ span.chattext{
 }
 
 .frames-box {
-    flex: 65%;
+    flex: 100%;
 }
 
 
@@ -231,7 +231,7 @@ body {
     border: 1px solid #d0dcde;
     box-shadow: 1px 1px 15px 10px rgba(255,255,255,0.2);
     
-    height: 150px;
+    height: 225px;
     overflow: auto; /*ob Scrollbalken mitdabei ist*/
     white-space: nowrap;
     scrollbar-color: #7492a4;
