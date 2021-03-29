@@ -1,12 +1,12 @@
-/*index.css*/
+/*css style for mainscreen*/
 html {
     font-family: 'Work Sans', sans-serif;
     background-image: url(/app/resources/img/background_img.jpg);
+    /*https://unsplash.com/photos/tXiMrX3Gc-g*/
     background-size: cover;
 	background-position: top center;
 	position: relative;
 	z-index: 1;
-    
 }
 html::after {
 	content: '';
@@ -23,7 +23,6 @@ html::after {
     box-sizing: border-box;
     font-size: 20px;
     font-family: 'Work Sans', sans-serif;
-    
 }
 
 *, ::before, ::after {
@@ -32,6 +31,13 @@ html::after {
 
 body div {
     padding: 1vw;
+}
+body {
+    margin: 0;
+    color: #000;
+}
+.row {
+    display: flex;
 }
 #playButton{
     font-size: 15px;
@@ -92,7 +98,6 @@ body div {
 	background-color: #918784;
     box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
 }
-
 #urlInput {
     display: inline-block;
 	padding: 10px 10px;
@@ -110,14 +115,10 @@ body div {
 	transition-property: background-color, color;
     text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
     text-align: center;
-    
-    
-
 }
 #submitButton{
     display: inline-block;
 	padding: 10px 10px;
-    
 	color: white;
 	background-color: transparent;
 	border: 2px solid #d0dcde;
@@ -129,8 +130,6 @@ body div {
 	transition: .3s ease;
 	transition-property: background-color, color;
     text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-    
-
 }
 #submitButton:hover {
 	color: #d0dcde;
@@ -138,18 +137,8 @@ body div {
     box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
 }
 
-
-.row {
-    display: flex;
-    /* justify-content: space-between; */
-    /* flex-wrap: wrap; */
-    /* padding: 0.5em  */
-    
-}
-
 .video-place{
     flex: 65%;
-    /* width: 75%; */
 }
 
 .chat-place {
@@ -168,58 +157,38 @@ body div {
 span.chattext{
     font-size: 30px;
     color: white;
-    
-    
 }
 #chatlogo{
     height: 10%;
     border-radius: 50%;
     -webkit-box-shadow: 2px 2px 15px -3px #000000; 
     box-shadow: 2px 2px 15px -3px #000000;
-    
 }
 
 #my-player{
     padding: 0.5em;
     box-shadow: 1px 1px 5px 2px rgba(255,255,255,0.1);
-    
     border: 1px solid #d0dcde;
-    /* width: 75%; */
     flex-basis: 50%; 
     margin-right: 3%;
-    /* border-radius: 1%;
-    border: 0.5px solid transparent; */
 }
-
 .navigation-row {
-
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     padding: 0.5em;
 }
-
 .url-entering{
     flex: 25%;
 }
-
 .room-delete {
     flex: 10%;
 }
-
 .frames-box {
     flex: 100%;
 }
-
-
-body {
-    margin: 0;
-    
-    color: #000;
-}
-
-.button.delete{
+/*.button.delete{
     text-align: center;
     font-size: 0.7em;
     background-color: lightblue;
@@ -227,34 +196,28 @@ body {
     border-width: 0.5px;
     border-color: rgb(30, 30, 30);
     border-radius: 7px;
-}
-
+}*/
 .frames-box {
     background-color: transparent;
     border-radius: 2%;
     border: 1px solid #d0dcde;
     box-shadow: 1px 1px 15px 10px rgba(255,255,255,0.2);
-    
     height: 225px;
-    overflow: auto; /*ob Scrollbalken mitdabei ist*/
+    overflow: auto;
     white-space: nowrap;
     scrollbar-color: #7492a4;
     scrollbar-width: thin;
 }
-
 ::-webkit-scrollbar {
     width: 10px;
 }
-
 .frames-box .frames {
     display: inline-block;
     flex-wrap: wrap;
     align-items: center;
-
     list-style-type: none;
     white-space: nowrap;
 }
-
 .frames-box .frames li {
     position: relative;
     display: inline-block;
@@ -264,12 +227,10 @@ body {
     background-color: black;
     white-space: normal;
 }
-
 .frames-box .frames li.highlight {
     border-color: #7492a4;
     opacity: 0.5;
 }
-
 .frames-box .frames li img {
     width: 200px;
     height: 150px;
@@ -278,10 +239,9 @@ body {
     border-color: #7492a4;
 }
 
-.frames-box .frames li .button.delete-frame {
+/*.frames-box .frames li .button.delete-frame {
     display: inline;
     position: absolute;
-    /*right: -2px;*/
     bottom: -2px;
     width: 60px;
     height: 20px;
@@ -295,26 +255,67 @@ body {
     border-radius: 7px 0px 0px 0px;
     color: rgb(250, 250, 250);
     z-index: 999;
-}
+}*/
 
-.frames-box .frames li .button.delete-frame:hover {
+/*.frames-box .frames li .button.delete-frame:hover {
     cursor: pointer;
     background-color: rgb(255, 0, 0);
     border-style: solid;
     border-color: rgb(255, 0, 0);
-}
+}*/
 
-.frames-box .frames li .button.delete-frame:hover ~ #img {
+/*.frames-box .frames li .button.delete-frame:hover ~ #img {
     border-color: rgb(255, 0, 0);
+}*/
+#logo{
+    border-radius: 50%;
+    -webkit-box-shadow: 2px 2px 15px -3px #000000; 
+box-shadow: 2px 2px 15px -3px #000000;
 }
-
+.controls input[type="button"] {
+    display: inline-block;
+    padding: 10px 15px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid #d0dcde;
+    border-radius: 7%;
+    box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 10px;
+    margin-left: 2%;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    margin-bottom: 3%;
+}
+.controls button{
+    display: inline-block;
+    padding: 10px 15px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid #d0dcde;
+    border-radius: 7%;
+    box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 10px;
+    margin-left: 1.5%;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    margin-bottom: 3%;
+}
+.controls input:hover {
+    color: #d0dcde;
+    background-color: #7492a4;
+}
 .board {
     display: flex;
     flex-direction: column;
     min-height: 50vh;
     flex-grow: 1;
     overflow: auto;
-    /*overflow-y: scroll;*/
 }
 span.savedUserName{
     text-shadow: -2px -1px 2px rgba(99, 181, 201, 0.1);
@@ -326,30 +327,23 @@ span.timestamp{
     color: gray;
     text-align: end;
     text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-
 }
-
 .board .message {
     display: flex;
     flex-direction: column;
-    /*padding: 1vh 8vw;*/
     padding-left: 13px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 13px;
-    
     background-color: rgba(255,255,255,0.1);
     background-clip: padding-box;
-    
     box-shadow: 0px 0px 11px -2px #7492a4;
     border: 1px solid #7492a4;
-    
     color: white;
     width: 200px;
     align-self: flex-end;
     margin: 3px 3px;
 }
-
 .board .message .user-name {
     border-style: solid;
     border-width: 0 0 1px 0;
@@ -359,14 +353,8 @@ span.timestamp{
 }
 .message{
     border-radius: 18%;
-    /*border: 1px solid #d0dcde;
-    margin-right: 5px;*/
     
 }
-
-
-
-
 .editor {
     display: flex;
     flex-direction: column; 
@@ -374,30 +362,15 @@ span.timestamp{
     padding: 2;
     background-color: transparent;
 }
-
 .editor input[type="text"] {
     border: none;
-    /* overflow: auto; */
-    /* padding: 2;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none; */
     background-color: var(--viridian);
     font-family: 'Work Sans', sans-serif;
     color: white;
     font-size: 1em;
 }
-
 .editor .message {
     border: none;
-    /* overflow: auto; */
-    /* padding: 2;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    resize: none; */
     background-color: black;
     font-family: 'Work Sans', sans-serif;
     color: white;
@@ -412,19 +385,12 @@ textarea{
     font-size: 1em;
     margin-top: 20px;
     border: 1px solid #D8D8D8;
-    
-    
-    
 }
 textarea::placeholder{
     color: #7492a4;
     
 }
-
 .editor input[type="button"] {
-    /* align-self: flex; */
-    /* overflow: auto; */
-    
     display: inline-block;
 	padding: 10px 10px;
 	color: white;
@@ -440,19 +406,16 @@ textarea::placeholder{
 	transition-property: background-color, color;
     text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
 }
-
 .editor input[type="button"]:hover {
     color: #d0dcde;
 	background-color: #0e3545;
 }
-
 @media(max-width: 900px){
     #my-player{
         flex: 100%;
         width: 450px;
         height: 300px;
     }
-
     .chat-place {
         font-size:medium;
         height: 400px;
@@ -466,49 +429,30 @@ textarea::placeholder{
     .editor input[type="button"] {
         margin-top: 130px;
     }
-    
 }
-
-
 @media(max-width: 650px){
     :root {
-        /* font-size: 0.875em; */
         font-size: x-small;
     }
-
     .row{
         align-items: center;
     }
-
     .video-place{
         flex: 75%;
         font-size: inherit;
     }
-    
     .chat-place {
         flex: 100%;
         width: 100%;
-        
         margin-left: 5%;
         margin-right: 5%;
-        
-        /* width: 100%; */
     }
-
-    /* #my-player{
-        flex: 100%;
-        width: 250px;
-        height: 180px;
-    } */
-
     .url-entering{
         flex: 70%;
     }
-    
     .room-delete {
         flex: 30%;
     }
-    
     .frames-box {
         flex: 100%;
         padding: 0.5em;
@@ -516,56 +460,37 @@ textarea::placeholder{
     .row{
         display: table;
     }
-
 }
-
 @media(max-width: 500px){
-    
     textarea{
         height:70px;
     }
     #playButton{
         font-size: 10px;
-        
     }
-   
     #pauseButton{
         font-size: 10px;
-        
     }
-    
     #syncButton{
         font-size: 10px;
-        
     }
-    
     #shuffleButton{
         font-size: 10px;
-        
     }
-    
     #sortButton{
         font-size: 10px;
-        
     }
-    
     #reverseButton{
         font-size: 10px;
-        
     }
     #my-player{
         flex: 100%;
-        
-        
         width: 330px;
         height: 180px;
         margin-left: 3%;
-        
-        
     } 
     span.chattext{
         font-size: 20px;
-        
     }
     .chat-place {
         flex: 100%;
@@ -574,31 +499,22 @@ textarea::placeholder{
         margin-left: 3%;
         margin-right: 5%;
         font-size: small;
-        
-        /* width: 100%; */
     }
     .controls input[type="button"] {
         margin-right: 0.1px;
         font-size: xx-small;
-        
         margin-left: 0.5px;
-        
     }
     .editor input[type="button"] {
-        
         margin-top: 20px;
-        
     }
     .controls{
         width: 98%;
         font-size: xx-small;
     }
-    
-    
     body{
         padding: 0vw;
         margin-right: 3%;
-        
     }
     #logo{
         height: 50px;
@@ -620,71 +536,10 @@ textarea::placeholder{
         margin-bottom: 3%;
         margin-top: 3%;
         margin-left: 3%;
-        
     }
-    
 }
-
-    #logo{
-        border-radius: 50%;
-        -webkit-box-shadow: 2px 2px 15px -3px #000000; 
-    box-shadow: 2px 2px 15px -3px #000000;
-    }
-
-
-    .controls input[type="button"] {
-        display: inline-block;
-        padding: 10px 15px;
-        color: white;
-        background-color: transparent;
-        border: 2px solid #d0dcde;
-        border-radius: 7%;
-        box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: .1rem;
-        margin-top: 10px;
-        margin-left: 2%;
-        transition: .3s ease;
-        transition-property: background-color, color;
-        margin-bottom: 3%;
-
-    }
-    .controls button{
-        display: inline-block;
-        padding: 10px 15px;
-        color: white;
-        background-color: transparent;
-        border: 2px solid #d0dcde;
-        border-radius: 7%;
-        box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: .1rem;
-        margin-top: 10px;
-        margin-left: 1.5%;
-        transition: .3s ease;
-        transition-property: background-color, color;
-        margin-bottom: 3%;
-    }
-
-    .controls input:hover {
-        color: #d0dcde;
-        background-color: #7492a4;
-    }
-
-    .index-bereich{
-     
-    }
-
-    .startscreen-bereich{
-     
-    }
-/*hier faengt starscreen css*/
-
-
+/*css style for startscreen*/
 .startscreen-bereich * {
-    
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
@@ -729,9 +584,7 @@ textarea::placeholder{
 .startscreen-bereich .section-title span {
 	color: #d0dcde;
 }
-
 .startscreen-bereich .hero .cta {
-    
 	display: inline-block;
 	padding: 20px 60px;
 	color: white;
@@ -757,37 +610,13 @@ textarea::placeholder{
 	color: #7492a4;
 }
 .startscreen-bereich #hero .logo-img {
-    
 	flex-basis: 50%;
 	height: 100px;
-	/*overflow: hidden;*/
 	position: absolute;
     top: 3%;
     left: 3%;
     border-radius: 50%;
 }
-
-
-
-/* Hero Section */
-/*
-.startscreen-bereich #hero::after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-color: black;
-	opacity: .7;
-	z-index: -1;
-}
-.startscreen-bereich #hero .hero {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 0 50px;
-	justify-content: center;
-}*/
 .startscreen-bereich #hero .hero h1 {
 	display: block;
 	width: fit-content;
@@ -826,12 +655,6 @@ textarea::placeholder{
 .startscreen-bereich #hero h1:nth-child(3) span {
 	animation-delay: 2.5s;
 }
-
-/* End Hero Section */
-
-
-
-
 /* Keyframes */
 @keyframes hamburger_puls {
 	0% {
@@ -944,21 +767,7 @@ textarea::placeholder{
 	}
 }
 /* End  Media Query For Desktop */
-
-/* .createdLink {
-	display: inline;
-	width: 10%;
-	height: 10%;
-	visibility: hidden;
-	border: 2px solid gray;
-	color: aliceblue;
-	font-size: large;
-} */
-
-
-
 .startscreen-bereich #hero .createdLink {
-    
 	align-items: center;
 	justify-content: center;
 	display: inline;
@@ -993,14 +802,11 @@ textarea::placeholder{
 	margin-top: 40%;
 	transition: .3s ease;
 	transition-property: background-color, color;
-
 }
 
 .startscreen-bereich .genLink{
 	align-content: center;
 	padding-left: 25%;
-    
-
 }
 .startscreen-bereich .hero .linkEnteringField{
     display: inline-block;
@@ -1029,25 +835,18 @@ textarea::placeholder{
         font-size: 1.3rem;
         margin-top: 20%;
     }
-    
-    
-    
-    
     .startscreen-bereich #hero .createdLink {
         font-size: 1.3rem;
         right:10px;
         width: 250px;
         text-align: center;
-        
     }
     .startscreen-bereich .hero .cta {
         font-size: 2rem;
         padding: 20px 40px;
     }
     .startscreen-bereich #hero .hero h1 {
-        
         font-size: 4.3rem;
-        
     }
 }
 @media(min-width: 750px){
@@ -1056,27 +855,19 @@ textarea::placeholder{
         font-size: 1.rem;
         margin-top: 13%;
     }
-    
-    
-    
-    
     .startscreen-bereich #hero .createdLink {
         font-size: 1.rem;
         right:10px;
         width: 250px;
         text-align: center;
-        
     }
     .startscreen-bereich .hero .cta {
         font-size: 1.3rem;
         padding: 20px 40px;
     }
     .startscreen-bereich #hero .hero h1 {
-        
         font-size: 2.9rem;
-        
     }
-    
 }
 @media(min-width: 1024px) {
     .startscreen-bereich .hero .linkEnteringField{
@@ -1084,25 +875,18 @@ textarea::placeholder{
         font-size: 1.rem;
         margin-top: 8%;
     }
-    
-    
-    
-    
     .startscreen-bereich #hero .createdLink {
         font-size: 1.rem;
         right:10px;
         width: 250px;
         text-align: center;
-        
     }
     .startscreen-bereich .hero .cta {
         font-size: 2rem;
         padding: 20px 40px;
     }
     .startscreen-bereich #hero .hero h1 {
-        
         font-size: 4.3rem;
-        
     }
 }
 

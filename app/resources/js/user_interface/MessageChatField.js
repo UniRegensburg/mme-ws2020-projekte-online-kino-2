@@ -1,39 +1,40 @@
-/* eslint-disable no-alert */
-/* eslint-disable one-var */
-/* eslint-disable no-console */
 
 const MESSAGE_TEMPLATE = document.querySelector("#message-template").innerHTML.trim();
 var boardEl, messageEl, sendMessageButton, appClientHere;
 
+/* adds entered message from user to the chat field in addition 
+to the generated name and timestamp*/
 function addMessageToBoard(message, boardEl) {
-    let dateD = new Date();    
-    let date = dateD.toLocaleTimeString(),
+    let dateD = new Date(),    
+    date = dateD.toLocaleTimeString(),
         tmpElement = document.createElement("div"),
         messageElement;
-        console.log("server time "+new Date(message.timeStamp).toLocaleTimeString()+" data client time "+date);
     tmpElement.innerHTML = MESSAGE_TEMPLATE;
     messageElement = tmpElement.firstChild;
     messageElement.querySelector(".timestamp").innerHTML = date;
-    // messageElement.querySelector(".user-name").innerHTML = message.userName;
     messageElement.querySelector(".text").innerHTML = message.message;
     messageElement.querySelector(".savedUserName").innerHTML=message.savedUserName;
     boardEl.insertBefore(messageElement, boardEl.firstChild);
-    console.log("date is "+date+" messageElement is "+messageElement+ " tmpElement is "+tmpElement);
-    
 }
 
 class MessageChatField {
 
     constructor(appClient){
         appClientHere=appClient;
+        this.setElements();
+        appClientHere.connectForChatting();
+        this.addListeners();    
+    }
+
+    setElements(){
         boardEl=document.querySelector(".board");
         sendMessageButton = document.querySelector(".editor input[type=\"button\"]");
-        // userNameEl = document.querySelector(".editor input[type=\"text\"]");
         messageEl = document.querySelector(".editor textarea");
-        appClientHere.connectForChatting();
+    }
+
+    addListeners(){
         sendMessageButton.addEventListener("click", this.onMessageSend.bind(appClientHere));
         appClientHere.addEventListener("new message", this.onMessageReceived);
-        
     }
 
     onMessageReceived(ev){
@@ -42,12 +43,12 @@ class MessageChatField {
 
     onMessageSend() {
         if (messageEl.value === "") {
+            // eslint-disable-next-line no-alert
             alert("Bitte Text eingeben!");
             return;
         }
         appClientHere.sendMessage(messageEl.value);
         messageEl.value = "";
-        // userNameEl.value="";
     }
 }
 
