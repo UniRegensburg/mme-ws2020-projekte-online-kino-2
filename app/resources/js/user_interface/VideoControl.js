@@ -20,7 +20,7 @@ class VideoControl extends Observable{
         videoEl=videojs('my-player');
 
         var URL="https://www.googleapis.com/youtube/v3/videos?id=2V1fYJntoFA&part=contentDetails&key=AIzaSyAxCYr1QkQLBOglWwT9QXFZjtlNItiRa-Y";
-        myList=[{name: "how to bathe your shibe" ,description: "",duration: 42, sources: [{
+        myList=[{name: "How to bathe a Shibe" ,description: "",duration: 42, sources: [{
             src: 'https://www.youtube.com/watch?v=2V1fYJntoFA',//Hund
             type: 'video/youtube',
         }], thumbnail: [{src: "http://img.youtube.com/vi/2V1fYJntoFA/mqdefault.jpg"}]}];
