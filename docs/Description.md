@@ -2,6 +2,8 @@
 
 Die Anwendung Cinema4Us soll Nutzerinnen und Nutzern erlauben gemeinsam YouTube Videos anzusehen und sich gemeinsam dazu im Chat auszutauschen.
 
+Ein Video zur Nutzung der Anwendung findet sich hier [Video](https://github.com/UniRegensburg/mme-ws2020-projekte-online-kino-2/blob/master/docs/assets/Demovideo.mp4)
+
 ## Starten der Anwendung
 
 1. **Einmaliges** Ausführen des Befehls `npm install` im Terminal, um die notwendigen Abhängigkeiten zu installieren.
