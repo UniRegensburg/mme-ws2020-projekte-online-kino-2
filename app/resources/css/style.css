@@ -4,140 +4,161 @@ html {
     background-image: url(/app/resources/img/background_img.jpg);
     /*https://unsplash.com/photos/tXiMrX3Gc-g*/
     background-size: cover;
-	background-position: top center;
-	position: relative;
-	z-index: 1;
+    background-position: top center;
+    position: relative;
+    z-index: 1;
 }
+
 html::after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background-color: black;
-	opacity: .7;
-	z-index: -1;
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: .7;
+    z-index: -1;
 }
+
 :root {
     box-sizing: border-box;
     font-size: 20px;
     font-family: 'Work Sans', sans-serif;
 }
 
-*, ::before, ::after {
+*,
+::before,
+::after {
     box-sizing: border-box;
 }
 
 body div {
     padding: 1vw;
 }
+
 body {
     margin: 0;
     color: #000;
 }
+
 .row {
     display: flex;
 }
-#playButton{
+
+#playButton {
     font-size: 15px;
     border-radius: 15%;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#playButton:hover {
-	color: #d0dcde;
-	background-color: #0e3545;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-}
-#pauseButton{
-    font-size: 15px;
-    border-radius: 15%;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#pauseButton:hover {
-	color: #d0dcde;
-	background-color: #0e3545;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-}
-#syncButton{
-    font-size: 15px;
-    border-radius: 15%;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#syncButton:hover {
-	color: #d0dcde;
-	background-color: #918784;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-}
-#shuffleButton{
-    font-size: 15px;
-    border-radius: 15%;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#shuffleButton:hover {
-	color: #d0dcde;
-	background-color: #918784;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-}
-#sortButton{
-    font-size: 15px;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#sortButton:hover {
-	color: #d0dcde;
-	background-color: #918784;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-}
-#reverseButton{
-    font-size: 15px;
-    border-radius: 15%;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#reverseButton:hover {
-	color: #d0dcde;
-	background-color: #918784;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-}
-#urlInput {
-    display: inline-block;
-	padding: 10px 10px;
-    width: 200px;
-    margin-right: 5%;
-	color: white;
-	background-color: #0e3545;
-	border: 2px solid #d0dcde;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-	font-size: 0.5rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 10px;
-	transition: .3s ease;
-	transition-property: background-color, color;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-    text-align: center;
-}
-#submitButton{
-    display: inline-block;
-	padding: 10px 10px;
-	color: white;
-	background-color: transparent;
-	border: 2px solid #d0dcde;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-	font-size: 0.8rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 10px;
-	transition: .3s ease;
-	transition-property: background-color, color;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
-}
-#submitButton:hover {
-	color: #d0dcde;
-	background-color: #7492a4;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.video-place{
+#playButton:hover {
+    color: #d0dcde;
+    background-color: #0e3545;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+#pauseButton {
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#pauseButton:hover {
+    color: #d0dcde;
+    background-color: #0e3545;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+#syncButton {
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#syncButton:hover {
+    color: #d0dcde;
+    background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+#shuffleButton {
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#shuffleButton:hover {
+    color: #d0dcde;
+    background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+#sortButton {
+    font-size: 15px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#sortButton:hover {
+    color: #d0dcde;
+    background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+#reverseButton {
+    font-size: 15px;
+    border-radius: 15%;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#reverseButton:hover {
+    color: #d0dcde;
+    background-color: #918784;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+#urlInput {
+    display: inline-block;
+    padding: 10px 10px;
+    width: 200px;
+    margin-right: 5%;
+    color: white;
+    background-color: #0e3545;
+    border: 2px solid #d0dcde;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 10px;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+#submitButton {
+    display: inline-block;
+    padding: 10px 10px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid #d0dcde;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 10px;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#submitButton:hover {
+    color: #d0dcde;
+    background-color: #7492a4;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+}
+
+.video-place {
     flex: 65%;
 }
 
@@ -150,28 +171,31 @@ body {
     font-size: 1rem;
     border-radius: 2%;
     border: 1px solid #d0dcde;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.2);
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.2);
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
     overflow: auto;
 }
-span.chattext{
+
+span.chattext {
     font-size: 30px;
     color: white;
 }
-#chatlogo{
+
+#chatlogo {
     height: 10%;
     border-radius: 50%;
-    -webkit-box-shadow: 2px 2px 15px -3px #000000; 
+    -webkit-box-shadow: 2px 2px 15px -3px #000000;
     box-shadow: 2px 2px 15px -3px #000000;
 }
 
-#my-player{
+#my-player {
     padding: 0.5em;
-    box-shadow: 1px 1px 5px 2px rgba(255,255,255,0.1);
+    box-shadow: 1px 1px 5px 2px rgba(255, 255, 255, 0.1);
     border: 1px solid #d0dcde;
-    flex-basis: 50%; 
+    flex-basis: 50%;
     margin-right: 3%;
 }
+
 .navigation-row {
     display: flex;
     justify-content: center;
@@ -179,38 +203,35 @@ span.chattext{
     flex-wrap: wrap;
     padding: 0.5em;
 }
-.url-entering{
+
+.url-entering {
     flex: 25%;
 }
+
 .room-delete {
     flex: 10%;
 }
+
 .frames-box {
     flex: 100%;
 }
-/*.button.delete{
-    text-align: center;
-    font-size: 0.7em;
-    background-color: lightblue;
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: rgb(30, 30, 30);
-    border-radius: 7px;
-}*/
+
 .frames-box {
     background-color: transparent;
     border-radius: 2%;
     border: 1px solid #d0dcde;
-    box-shadow: 1px 1px 15px 10px rgba(255,255,255,0.2);
+    box-shadow: 1px 1px 15px 10px rgba(255, 255, 255, 0.2);
     height: 225px;
     overflow: auto;
     white-space: nowrap;
     scrollbar-color: #7492a4;
     scrollbar-width: thin;
 }
+
 ::-webkit-scrollbar {
     width: 10px;
 }
+
 .frames-box .frames {
     display: inline-block;
     flex-wrap: wrap;
@@ -218,6 +239,7 @@ span.chattext{
     list-style-type: none;
     white-space: nowrap;
 }
+
 .frames-box .frames li {
     position: relative;
     display: inline-block;
@@ -227,10 +249,12 @@ span.chattext{
     background-color: black;
     white-space: normal;
 }
+
 .frames-box .frames li.highlight {
     border-color: #7492a4;
     opacity: 0.5;
 }
+
 .frames-box .frames li img {
     width: 200px;
     height: 150px;
@@ -239,39 +263,12 @@ span.chattext{
     border-color: #7492a4;
 }
 
-/*.frames-box .frames li .button.delete-frame {
-    display: inline;
-    position: absolute;
-    bottom: -2px;
-    width: 60px;
-    height: 20px;
-    line-height: 20px;
-    text-align: center;
-    font-size: 0.6em;
-    background-color: #0e3545;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    border-radius: 7px 0px 0px 0px;
-    color: rgb(250, 250, 250);
-    z-index: 999;
-}*/
-
-/*.frames-box .frames li .button.delete-frame:hover {
-    cursor: pointer;
-    background-color: rgb(255, 0, 0);
-    border-style: solid;
-    border-color: rgb(255, 0, 0);
-}*/
-
-/*.frames-box .frames li .button.delete-frame:hover ~ #img {
-    border-color: rgb(255, 0, 0);
-}*/
-#logo{
+#logo {
     border-radius: 50%;
-    -webkit-box-shadow: 2px 2px 15px -3px #000000; 
-box-shadow: 2px 2px 15px -3px #000000;
+    -webkit-box-shadow: 2px 2px 15px -3px #000000;
+    box-shadow: 2px 2px 15px -3px #000000;
 }
+
 .controls input[type="button"] {
     display: inline-block;
     padding: 10px 15px;
@@ -279,7 +276,7 @@ box-shadow: 2px 2px 15px -3px #000000;
     background-color: transparent;
     border: 2px solid #d0dcde;
     border-radius: 7%;
-    box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
+    box-shadow: 1px 1px 15px 11px rgba(255, 255, 255, 0.1);
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: .1rem;
@@ -289,14 +286,15 @@ box-shadow: 2px 2px 15px -3px #000000;
     transition-property: background-color, color;
     margin-bottom: 3%;
 }
-.controls button{
+
+.controls button {
     display: inline-block;
     padding: 10px 15px;
     color: white;
     background-color: transparent;
     border: 2px solid #d0dcde;
     border-radius: 7%;
-    box-shadow: 1px 1px 15px 11px rgba(255,255,255,0.1);
+    box-shadow: 1px 1px 15px 11px rgba(255, 255, 255, 0.1);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: .1rem;
@@ -306,10 +304,12 @@ box-shadow: 2px 2px 15px -3px #000000;
     transition-property: background-color, color;
     margin-bottom: 3%;
 }
+
 .controls input:hover {
     color: #d0dcde;
     background-color: #7492a4;
 }
+
 .board {
     display: flex;
     flex-direction: column;
@@ -317,17 +317,20 @@ box-shadow: 2px 2px 15px -3px #000000;
     flex-grow: 1;
     overflow: auto;
 }
-span.savedUserName{
+
+span.savedUserName {
     text-shadow: -2px -1px 2px rgba(99, 181, 201, 0.1);
     color: #7492a4;
     text-align: end;
 }
-span.timestamp{
+
+span.timestamp {
     font-size: small;
     color: gray;
     text-align: end;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
 }
+
 .board .message {
     display: flex;
     flex-direction: column;
@@ -335,7 +338,7 @@ span.timestamp{
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 13px;
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
     background-clip: padding-box;
     box-shadow: 0px 0px 11px -2px #7492a4;
     border: 1px solid #7492a4;
@@ -344,6 +347,7 @@ span.timestamp{
     align-self: flex-end;
     margin: 3px 3px;
 }
+
 .board .message .user-name {
     border-style: solid;
     border-width: 0 0 1px 0;
@@ -351,17 +355,20 @@ span.timestamp{
     margin-bottom: 1vh;
     padding-bottom: 1vh;
 }
-.message{
+
+.message {
     border-radius: 18%;
-    
+
 }
+
 .editor {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     margin: 0;
     padding: 2;
     background-color: transparent;
 }
+
 .editor input[type="text"] {
     border: none;
     background-color: var(--viridian);
@@ -369,6 +376,7 @@ span.timestamp{
     color: white;
     font-size: 1em;
 }
+
 .editor .message {
     border: none;
     background-color: black;
@@ -377,7 +385,8 @@ span.timestamp{
     text-align: start;
     font-size: 1em;
 }
-textarea{
+
+textarea {
     color: white;
     text-align: left;
     background-color: transparent;
@@ -386,112 +395,137 @@ textarea{
     margin-top: 20px;
     border: 1px solid #D8D8D8;
 }
-textarea::placeholder{
+
+textarea::placeholder {
     color: #7492a4;
-    
+
 }
+
 .editor input[type="button"] {
     display: inline-block;
-	padding: 10px 10px;
-	color: white;
-	background-color: #7492a4;
-	border: 2px solid #d0dcde;
+    padding: 10px 10px;
+    color: white;
+    background-color: #7492a4;
+    border: 2px solid #d0dcde;
     border-radius: 7%;
-    box-shadow: 1px 1px 10px 4px rgba(255,255,255,0.1);
-	font-size: 1rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 15px;
-	transition: .3s ease;
-	transition-property: background-color, color;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 10px 4px rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 15px;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
 }
+
 .editor input[type="button"]:hover {
     color: #d0dcde;
-	background-color: #0e3545;
+    background-color: #0e3545;
 }
-@media(max-width: 900px){
-    #my-player{
+
+@media(max-width: 900px) {
+    #my-player {
         flex: 100%;
         width: 450px;
         height: 300px;
     }
+
     .chat-place {
-        font-size:medium;
+        font-size: medium;
         height: 400px;
         margin-left: 5px;
     }
-    #logo{
+
+    #logo {
         margin-top: 3px;
         margin-left: 3px;
         height: 50px;
     }
+
     .editor input[type="button"] {
         margin-top: 130px;
     }
 }
-@media(max-width: 650px){
+
+@media(max-width: 650px) {
     :root {
         font-size: x-small;
     }
-    .row{
+
+    .row {
         align-items: center;
     }
-    .video-place{
+
+    .video-place {
         flex: 75%;
         font-size: inherit;
     }
+
     .chat-place {
         flex: 100%;
         width: 100%;
         margin-left: 5%;
         margin-right: 5%;
     }
-    .url-entering{
+
+    .url-entering {
         flex: 70%;
     }
+
     .room-delete {
         flex: 30%;
     }
+
     .frames-box {
         flex: 100%;
         padding: 0.5em;
     }
-    .row{
+
+    .row {
         display: table;
     }
 }
-@media(max-width: 500px){
-    textarea{
-        height:70px;
+
+@media(max-width: 500px) {
+    textarea {
+        height: 70px;
     }
-    #playButton{
+
+    #playButton {
         font-size: 10px;
     }
-    #pauseButton{
+
+    #pauseButton {
         font-size: 10px;
     }
-    #syncButton{
+
+    #syncButton {
         font-size: 10px;
     }
-    #shuffleButton{
+
+    #shuffleButton {
         font-size: 10px;
     }
-    #sortButton{
+
+    #sortButton {
         font-size: 10px;
     }
-    #reverseButton{
+
+    #reverseButton {
         font-size: 10px;
     }
-    #my-player{
+
+    #my-player {
         flex: 100%;
         width: 330px;
         height: 180px;
         margin-left: 3%;
-    } 
-    span.chattext{
+    }
+
+    span.chattext {
         font-size: 20px;
     }
+
     .chat-place {
         flex: 100%;
         width: 90%;
@@ -500,399 +534,341 @@ textarea::placeholder{
         margin-right: 5%;
         font-size: small;
     }
+
     .controls input[type="button"] {
         margin-right: 0.1px;
         font-size: xx-small;
         margin-left: 0.5px;
     }
+
     .editor input[type="button"] {
         margin-top: 20px;
     }
-    .controls{
+
+    .controls {
         width: 98%;
         font-size: xx-small;
     }
-    body{
+
+    body {
         padding: 0vw;
         margin-right: 3%;
     }
-    #logo{
+
+    #logo {
         height: 50px;
         margin-left: 3px;
         margin-top: 3px;
     }
-    .frames-box{
+
+    .frames-box {
         height: 100px;
         margin-left: 3%;
     }
-    #urlInput{
+
+    #urlInput {
         width: 300px;
         font-size: 1rem;
         text-align: center;
         margin-left: 3%;
     }
-    #submitButton{
+
+    #submitButton {
         font-size: 1rem;
         margin-bottom: 3%;
         margin-top: 3%;
         margin-left: 3%;
     }
 }
+
 /*css style for startscreen*/
 .startscreen-bereich * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
+
 .startscreen-bereich html {
-	font-size: 10px;
-	font-family: 'Work Sans', sans-serif;
-	scroll-behavior: smooth;
+    font-size: 10px;
+    font-family: 'Work Sans', sans-serif;
+    scroll-behavior: smooth;
 }
-.startscreen-bereich a {
-	text-decoration: none;
-}
+
 .startscreen-bereich .container {
-	min-height: 100vh;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .startscreen-bereich img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
-.startscreen-bereich p {
-	color: black;
-	font-size: 1.4rem;
-	margin-top: 5px;
-	line-height: 2.5rem;
-	font-weight: 300;
-	letter-spacing: .05rem;
+
+.startscreen-bereich .start .cta {
+    display: inline-block;
+    padding: 20px 60px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid #d0dcde;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 30px;
+    transition: .3s ease;
+    transition-property: background-color, color;
 }
-.startscreen-bereich .section-title {
-	font-size: 4rem;
-	font-weight: 300;
-	color: black;
-	margin-bottom: 10px;
-	text-transform: uppercase;
-	letter-spacing: .2rem;
-	text-align: center;
-}
-.startscreen-bereich .section-title span {
-	color: #d0dcde;
-}
-.startscreen-bereich .hero .cta {
-	display: inline-block;
-	padding: 20px 60px;
-	color: white;
-	background-color: transparent;
-	border: 2px solid #d0dcde;
-	font-size: 1.3rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 30px;
-	transition: .3s ease;
-	transition-property: background-color, color;
-}
+
 .startscreen-bereich .cta:hover {
-	color: #d0dcde;
-	background-color: #7492a4;
+    color: #d0dcde;
+    background-color: #7492a4;
 }
+
 .startscreen-bereich .brand h1 {
-	font-size: 3rem;
-	text-transform: uppercase;
-	color: white;
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: white;
 }
+
 .startscreen-bereich .brand h1 span {
-	color: #7492a4;
+    color: #7492a4;
 }
-.startscreen-bereich #hero .logo-img {
-	flex-basis: 50%;
-	height: 100px;
-	position: absolute;
+
+.startscreen-bereich #start .logo-img {
+    flex-basis: 50%;
+    height: 100px;
+    position: absolute;
     top: 3%;
     left: 3%;
     border-radius: 50%;
 }
-.startscreen-bereich #hero .hero h1 {
-	display: block;
-	width: fit-content;
-	font-size: 4.3rem;
-	position: relative;
-	color: transparent;
-	animation: text_reveal .5s ease forwards;
-	animation-delay: 1s;
+
+.startscreen-bereich #start .start h1 {
+    display: block;
+    width: fit-content;
+    font-size: 4.3rem;
+    position: relative;
+    color: transparent;
+    animation: text_reveal .5s ease forwards;
+    animation-delay: 1s;
 }
-.startscreen-bereich #hero h1:nth-child(1) {
-	animation-delay: 1s;
+
+.startscreen-bereich #start h1:nth-child(1) {
+    animation-delay: 1s;
 }
-.startscreen-bereich #hero h1:nth-child(2) {
-	animation-delay: 2s;
+
+.startscreen-bereich #start h1:nth-child(2) {
+    animation-delay: 2s;
 }
-.startscreen-bereich #hero .hero h1:nth-child(3) {
-	animation: text_reveal_name .5s ease forwards;
-	animation-delay: 3s;
+
+.startscreen-bereich #start .start h1:nth-child(3) {
+    animation: text_reveal_name .5s ease forwards;
+    animation-delay: 3s;
 }
-.startscreen-bereich #hero .hero h1 span {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 0;
-	background-color: #7492a4;
-	animation: text_reveal_box 1s ease;
-	animation-delay: .5s;
+
+.startscreen-bereich #start .start h1 span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #7492a4;
+    animation: text_reveal_box 1s ease;
+    animation-delay: .5s;
 }
-.startscreen-bereich #hero h1:nth-child(1) span {
-	animation-delay: .5s;
+
+.startscreen-bereich #start h1:nth-child(1) span {
+    animation-delay: .5s;
 }
-.startscreen-bereich #hero h1:nth-child(2) span {
-	animation-delay: 1.5s;
+
+.startscreen-bereich #start h1:nth-child(2) span {
+    animation-delay: 1.5s;
 }
-.startscreen-bereich #hero h1:nth-child(3) span {
-	animation-delay: 2.5s;
+
+.startscreen-bereich #start h1:nth-child(3) span {
+    animation-delay: 2.5s;
 }
-/* Keyframes */
-@keyframes hamburger_puls {
-	0% {
-		opacity: 1;
-		transform: scale(1);
-	}
-	100% {
-		opacity: 0;
-		transform: scale(1.4);
-	}
-}
+
 @keyframes text_reveal_box {
-	50% {
-		width: 100%;
-		left: 0;
-	}
-	100% {
-		width: 0;
-		left: 100%;
-	}
+    50% {
+        width: 100%;
+        left: 0;
+    }
+
+    100% {
+        width: 0;
+        left: 100%;
+    }
 }
+
 @keyframes text_reveal {
-	100% {
-		color: white;
-	}
+    100% {
+        color: white;
+    }
 }
+
 @keyframes text_reveal_name {
-	100% {
-		color: #7492a4;
-		font-weight: 500;
-	}
+    100% {
+        color: #7492a4;
+        font-weight: 500;
+    }
 }
-/* End Keyframes */
 
-/* Media Query For Tablet */
+
+
 @media only screen and (min-width: 768px) {
-	.startscreen-bereich .cta {
-		font-size: 2.5rem;
-		padding: 20px 60px;
-	}
-	.startscreen-bereich h1.section-title {
-		font-size: 6rem;
-	}
+    .startscreen-bereich .cta {
+        font-size: 2.5rem;
+        padding: 20px 60px;
+    }
 
-	/* Hero */
-	.startscreen-bereich #hero h1 {
-		font-size: 7rem;
-	}
-	/* End Hero */
+    .startscreen-bereich h1.section-title {
+        font-size: 6rem;
+    }
 
-	/* Services Section */
-	.startscreen-bereich #services .service-bottom .service-item {
-		flex-basis: 45%;
-		margin: 2.5%;
-	}
-	/* End Services Section */
 
-	/* Project */
-	.startscreen-bereich #projects .project-item {
-		flex-direction: row;
-	}
-	.startscreen-bereich #projects .project-item:nth-child(even) {
-		flex-direction: row-reverse;
-	}
-	.startscreen-bereich #projects .project-item {
-		height: 400px;
-		margin: 0;
-		width: 100%;
-		border-radius: 0;
-	}
-	.startscreen-bereich #projects .all-projects .project-info {
-		height: 100%;
-	}
-	.startscreen-bereich #projects .all-projects .project-img {
-		height: 100%;
-	}
-	/* End Project */
+    .startscreen-bereich #start h1 {
+        font-size: 7rem;
+    }
+
 }
 
-/* End Media Query For Tablet */
-
-/* Media Query For Desktop */
-@media only screen and (min-width: 1200px) {
-    
-	/* header */
-	.startscreen-bereich #header .hamburger {
-		display: none;
-	}
-	.startscreen-bereich #header .nav-list ul {
-		position: initial;
-		display: block;
-		height: auto;
-		width: fit-content;
-		background-color: transparent;
-	}
-	.startscreen-bereich #header .nav-list ul li {
-		display: inline-block;
-	}
-	.startscreen-bereich #header .nav-list ul li a {
-		font-size: 1.8rem;
-	}
-	.startscreen-bereich #header .nav-list ul a:after {
-		display: none;
-	}
-	/* End header */
-
-	.startscreen-bereich #services .service-bottom .service-item {
-		flex-basis: 22%;
-		margin: 1.5%;
-	}
-}
-/* End  Media Query For Desktop */
-.startscreen-bereich #hero .createdLink {
-	align-items: center;
-	justify-content: center;
-	display: inline;
-	padding: 10px 30px;
-	color: white;
-	background-color: transparent;
-	border: 2px solid #d0dcde;
-	font-size: 1.rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 30px;
-	transition: .3s ease;
-	transition-property: background-color, color;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-    position:absolute;
-    top:30px;
-    right:10px;
+.startscreen-bereich #start .createdLink {
+    align-items: center;
+    justify-content: center;
+    display: inline;
+    padding: 10px 30px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid #d0dcde;
+    font-size: 1.rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 30px;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+    position: absolute;
+    top: 30px;
+    right: 10px;
     width: 250px;
     margin-right: 5%;
     margin-top: 10px;
     height: fit-content;
 }
-.startscreen-bereich .hero button {
-	display: inline-block;
-	padding: 10px 30px;
-	color: white;
-	background-color: transparent;
-	border: 2px solid #d0dcde;
-	font-size: 2rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 40%;
-	transition: .3s ease;
-	transition-property: background-color, color;
+
+.startscreen-bereich .start button {
+    display: inline-block;
+    padding: 10px 30px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid #d0dcde;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 40%;
+    transition: .3s ease;
+    transition-property: background-color, color;
 }
 
-.startscreen-bereich .genLink{
-	align-content: center;
-	padding-left: 25%;
+.startscreen-bereich .genLink {
+    align-content: center;
+    padding-left: 25%;
 }
-.startscreen-bereich .hero .linkEnteringField{
+
+.startscreen-bereich .start .linkEnteringField {
     display: inline-block;
-	padding: 10px 10px;
+    padding: 10px 10px;
     width: 250px;
     margin-right: 5%;
-	color: white;
-	background-color: #918784;
-	border: 2px solid #d0dcde;
-    box-shadow: 1px 1px 18px 11px rgba(255,255,255,0.15);
-	font-size: 1.rem;
-	text-transform: uppercase;
-	letter-spacing: .1rem;
-	margin-top: 8%;
-	transition: .3s ease;
-	transition-property: background-color, color;
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.3);
+    color: white;
+    background-color: #918784;
+    border: 2px solid #d0dcde;
+    box-shadow: 1px 1px 18px 11px rgba(255, 255, 255, 0.15);
+    font-size: 1.rem;
+    text-transform: uppercase;
+    letter-spacing: .1rem;
+    margin-top: 8%;
+    transition: .3s ease;
+    transition-property: background-color, color;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.3);
     text-align: center;
     position: absolute;
     top: 10px;
     right: 10px;
 }
-@media(max-width: 500px){
-    .startscreen-bereich .hero .linkEnteringField{
+
+@media(max-width: 500px) {
+    .startscreen-bereich .start .linkEnteringField {
         width: 250px;
         font-size: 1.3rem;
         margin-top: 20%;
     }
-    .startscreen-bereich #hero .createdLink {
+
+    .startscreen-bereich #start .createdLink {
         font-size: 1.3rem;
-        right:10px;
+        right: 10px;
         width: 250px;
         text-align: center;
     }
-    .startscreen-bereich .hero .cta {
+
+    .startscreen-bereich .start .cta {
         font-size: 2rem;
         padding: 20px 40px;
     }
-    .startscreen-bereich #hero .hero h1 {
+
+    .startscreen-bereich #start .start h1 {
         font-size: 4.3rem;
     }
 }
-@media(min-width: 750px){
-    .startscreen-bereich .hero .linkEnteringField{
+
+@media(min-width: 750px) {
+    .startscreen-bereich .start .linkEnteringField {
         width: 250px;
         font-size: 1.rem;
         margin-top: 13%;
     }
-    .startscreen-bereich #hero .createdLink {
+
+    .startscreen-bereich #start .createdLink {
         font-size: 1.rem;
-        right:10px;
+        right: 10px;
         width: 250px;
         text-align: center;
     }
-    .startscreen-bereich .hero .cta {
+
+    .startscreen-bereich .start .cta {
         font-size: 1.3rem;
         padding: 20px 40px;
     }
-    .startscreen-bereich #hero .hero h1 {
+
+    .startscreen-bereich #start .start h1 {
         font-size: 2.9rem;
     }
 }
+
 @media(min-width: 1024px) {
-    .startscreen-bereich .hero .linkEnteringField{
+    .startscreen-bereich .start .linkEnteringField {
         width: 250px;
         font-size: 1.rem;
         margin-top: 8%;
     }
-    .startscreen-bereich #hero .createdLink {
+
+    .startscreen-bereich #start .createdLink {
         font-size: 1.rem;
-        right:10px;
+        right: 10px;
         width: 250px;
         text-align: center;
     }
-    .startscreen-bereich .hero .cta {
+
+    .startscreen-bereich .start .cta {
         font-size: 2rem;
         padding: 20px 40px;
     }
-    .startscreen-bereich #hero .hero h1 {
+
+    .startscreen-bereich #start .start h1 {
         font-size: 4.3rem;
     }
 }
-
-
-
-
-
-
-

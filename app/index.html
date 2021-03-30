@@ -21,12 +21,12 @@
 
 <body>
     <div class="startscreen-bereich">
-        <section id="hero">
+        <section id="start">
             <div class="logo-img">
                 <!--the logo was created with the "logo Maker" app from the Google Play Store -->
                 <img id="logo" src=.\resources\img\logo-img.jpeg> </img>
             </div>
-            <div class="hero container">
+            <div class="start container">
 
                 <div>
                     <h1>Willkommen <span></span></h1>
@@ -66,8 +66,7 @@
 
             <div class="row">
                 <div class="video-place">
-                    <video id="my-player" class="video-js vjs-default-skin" width="640" height="360"
-                        data-setup='{ "preload": true, "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "", "autoplay": false}], "youtube": { "ytControls": 2 } }'>
+                    <video id="my-player" class="video-js vjs-default-skin" width="640" height="360" data-setup='{ "preload": true, "techOrder": ["youtube", "html5"], "sources": [{ "type": "video/youtube", "src": "", "autoplay": false}], "youtube": { "ytControls": 2 } }'>
                     </video>
                     <div class="controls">
                         <button id="playButton"><i class="fa fa-play"></i></button>
@@ -102,7 +101,7 @@
         </span>
     </template>
 
-   
+
     <!-- loading client code for socket io -->
     <script src="/socket.io/socket.io.js"></script>
     <!-- loading client code for video.js and Youtube -->
@@ -119,4 +118,5 @@
 
 
 </body>
+
 </html>
