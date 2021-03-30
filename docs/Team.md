@@ -23,3 +23,5 @@ Zuständig für: Server-Einrichtung und Erstellung von Räumen</p>
 E-Mail-Adresse: Irene.Tscherneta@stud.uni-regensburg.de<br>
 Github-Nutzer: Irinka99<br>
 Zuständig für: Logoerstellung, HTML und CSS, Erstellung eines Anwendungsvideos</p>
+
+Weitere Information zum finalen Stand der Anwendungen und der Arbeit am Projekt finden sich hier [Dokumentation](https://github.com/UniRegensburg/mme-ws2020-projekte-online-kino-2/blob/master/docs/assets/Doku_Cinema4Us.pdf)
