@@ -25,7 +25,7 @@ Will man die abzuspielende Position des Videos ändern, soll zunächst die gewü
 
 Die `Shuffle` Funktion bringt die Playlist in eine zufällige Reihenfolge, die `Dauer-Absteigend` Funktion sortiert die Videos der Länge nach absteigend und die `Reverse` Funktion dreht die Reihenfolge der Playlist um, sodass das zuletzt hinzugefügte Video als nächstes abgespielt wird.
 
-![image](https://user-images.githubusercontent.com/53038745/112992718-b852ea00-9168-11eb-8a5b-f07897f8d2b9.png)
+![image](https://user-images.githubusercontent.com/53038745/112998848-b724bb80-916e-11eb-94c1-f8e1c0b97d2f.png)
 
 Im Chat können Nachrichten ausgetauscht werden, indem die Nutzer den gewünschten Text eingeben und absenden. Jeder Nutzer hat einen zufällig generierten Namen. Außerdem ist jede Nachricht mit einem Zeitstempel versehen. 
 
