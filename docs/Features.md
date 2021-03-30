@@ -19,3 +19,9 @@
 ## Umsetzung
 
 [Beschreiben Sie kurz das geplante Vorgehen bei der Umsetzung der Features. Entwerfen Sie dazu ein oder mehrere *Vertical Slices* anhand derer Sie den zentralen *Use Case* der Anwendung implementieren werden. Geben Sie an, wann welche Funktionen (und in welchem Vollständigkeitsgrad) implementiert werden. Begründen Sie kurz die gewählte Reihenfolge. ]
+
+
+<img align="left" height="300" src="https://github.com/UniRegensburg/mme-ws2020-projekte-online-kino-2/blob/master/docs/assets/Vertical_Slices_final_version.jpg" />
+
+Alle hier aufgelisteten Bestandteile des Slices wurden im Verlaufe des ´Projekts implementiert, hierbei handelt es sich um die kritischen/wichtigsten Features, die Optionalen Features konnten aufgrund von Zeitmangel/technischen Problemen nicht implementiert werden. Die Features wurden hierbei in der Reihenfolge von oben nach unten implementiert, im Verlaufe des Projektes, wobei die Reihenfolge nicht streng eingehalten wurde, da aufgrund Variabler Faktoren die Fortschritte bei den jeweiligen Fetures verschieden waren und viele Teile auch parallel entwickelt wurden. Diese Reihenfolge wurde so gewählt, um eine Möglichst effiziente Aufteilung der Arbeit auf die einzelnen Gruppenmitglieder zu haben, mit den verschiedenen Interface-Stufen als "Checkpoint" um dann den jeweiligen Zwischenstand zu erfassen.
+
